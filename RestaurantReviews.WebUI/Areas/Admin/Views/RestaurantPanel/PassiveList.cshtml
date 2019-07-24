@@ -1,0 +1,56 @@
+﻿@model RestaurantReviews.WebUI.Areas.Admin.Models.PanelRestaurantListVm
+@{
+    ViewBag.Title = "PassiveRestaurantList";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary d-inline-block">Pasif Restoranlar</h6>
+    </div>
+    <div class="card-body">
+        <div class="input-group col-md-5">
+            <input type="text" id="passive-restaurant-name-searchkey" value="@Model.SearchWord" class="form-control bg-light border-0 small" placeholder="Restoran adına göre ara..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="btn-searchby-passive-restaurant-name">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+        <br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>İsim</th>
+                    <th>Telefon</th>
+                    <th>Adres</th>
+                    <th>İlçe</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.RestaurantList.Count(); i++) {
+                    <tr>
+                        <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
+                        <td><a href="/restoran-detay?id=@Model.RestaurantList[i].Id"><span id="restaurant-name-@Model.RestaurantList[i].Id">@Model.RestaurantList[i].Name</span></a></td>
+                        <td>@Model.RestaurantList[i].PhoneNumber</td>
+                        <td>@Model.RestaurantList[i].Adress</td>
+                        <td><a href="tum-restoranlar?districtId=@Model.RestaurantList[i].District.Id">@Model.RestaurantList[i].District.Name</a></td>
+                        <td>
+                            <a href="#"><i title="Restoranı Aktif Et" class="fas fa-fw fa-redo activate-restaurant" id="activate-@Model.RestaurantList[i].Id"></i></a> <a href="#">
+                                <i title="Kalıcı Olarak Sil" class="fas fa-fw fa-trash perm-delete-restaurant" id="perm-delete-@Model.RestaurantList[i].Id"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li><a href="#" class="passive-restaurant-list-pagination" id="prev-page">&lt;Önceki</a></li>
+            <li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><a href="#" class="passive-restaurant-list-pagination" id="next-page">Sonraki&gt;</a></li>
+        </ul>
+        <input type="hidden" id="max-page" name="MaxPage" value="@Model.MaxPage" />
+    </div>
+</div>
+<script src="~/Areas/Admin/Scripts/Restaurant/Restaurant.js"></script>

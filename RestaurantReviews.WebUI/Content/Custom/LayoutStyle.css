@@ -1,0 +1,318 @@
+﻿.navbar-default {
+    background-color: #a1261a;
+    border-color: #61211b;
+    padding-right: 3%;
+    padding-left: 3%
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-default .navbar-brand {
+    color: #ecf0f1;
+}
+
+    .navbar-default .navbar-brand:hover,
+    .navbar-default .navbar-brand:focus {
+        color: #ffffff;
+    }
+
+.navbar-default .navbar-text {
+    color: #ecf0f1;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #ecf0f1;
+}
+
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+        color: #ffffff;
+    }
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color: #61211b;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #ffffff;
+    background-color: #61211b;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #61211b;
+}
+
+    .navbar-default .navbar-toggle:hover,
+    .navbar-default .navbar-toggle:focus {
+        background-color: #61211b;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #ecf0f1;
+    }
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #ecf0f1;
+}
+
+.navbar-default .navbar-link {
+    color: #ecf0f1;
+}
+
+    .navbar-default .navbar-link:hover {
+        color: #ffffff;
+    }
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ecf0f1;
+    }
+
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+            color: #ffffff;
+        }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #ffffff;
+        background-color: #61211b;
+    }
+}
+
+#mainpage-jumbotron {
+    background-image: url('/Content/Images/home-header.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 325px;
+    color: white;
+}
+
+#myFooter {
+    background-color: #a1261a;
+    color: white;
+}
+
+    #myFooter .row {
+        margin-bottom: 60px;
+    }
+
+    #myFooter .info {
+        text-align: justify;
+        color: #ecf0f1;
+    }
+
+    #myFooter ul {
+        list-style-type: none;
+        padding-left: 0;
+        line-height: 1.7;
+    }
+
+    #myFooter h5 {
+        font-size: 18px;
+        color: white;
+        font-weight: bold;
+        margin-top: 30px;
+    }
+
+    #myFooter .logo {
+        margin-top: 10px;
+    }
+
+    #myFooter .second-bar .logo a {
+        color: white;
+        font-size: 28px;
+        float: left;
+        font-weight: bold;
+        line-height: 40px;
+        margin: 0;
+        padding: 0;
+    }
+
+    #myFooter a {
+        color: #ecf0f1;
+        text-decoration: none;
+    }
+
+        #myFooter a:hover,
+        #myFooter a:focus {
+            text-decoration: none;
+            color: white;
+        }
+
+    #myFooter .second-bar {
+        text-align: center;
+        background-color: #33373e;
+        text-align: center;
+    }
+
+        #myFooter .second-bar a {
+            font-size: 22px;
+            color: #ecf0f1;
+            padding: 10px;
+            transition: 0.2s;
+            line-height: 68px;
+        }
+
+            #myFooter .second-bar a:hover {
+                text-decoration: none;
+            }
+
+    #myFooter .social-icons {
+        float: right;
+    }
+
+
+    #myFooter .facebook:hover {
+        color: #0077e2;
+    }
+
+    #myFooter .google:hover {
+        color: #ef1a1a;
+    }
+
+    #myFooter .twitter:hover {
+        color: #00aced;
+    }
+
+@media screen and (max-width: 767px) {
+    #myFooter {
+        text-align: center;
+    }
+
+        #myFooter .info {
+            text-align: center;
+        }
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f4f2ed;
+}
+
+#restaurant-left {
+    min-width: 63%;
+    margin-right: 3%;
+}
+
+#mainpage-left {
+    min-width: 63%;
+    margin-right: 3%;
+}
+
+.inactive-link {
+    pointer-events: none;
+    cursor: default;
+    color: gray !important;
+}
+
+#mainpage-left {
+    padding-top: 15px;
+}
+
+.pagination {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#restaurant-detail-cover-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    margin-top: 15px;
+}
+
+#restaurant-detail-container {
+    margin-top: 20px;
+}
+
+.image-thumbnail {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 1px solid black;
+    margin-top: 5px;
+}
+
+.btn-add-detail-img {
+    width: 100px;
+    height: 100px;
+}
+
+#add-restaurant-image-gallery {
+    margin-top: 3%;
+}
+
+#add-review-area {
+    margin-bottom: 50px;
+}
+
+#txt-comment {
+    resize: none;
+    margin-bottom: 5px;
+}
+
+#login-review {
+    cursor: pointer;
+}
+
+/*.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+    .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff;
+        border-bottom: 1px solid #d4d4d4;
+    }
+
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+
+.autocomplete-active {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+*/
+.table-no-margin{
+    margin:0;
+}
+
+#search-suggestions {
+    width: 400px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    position: relative;
+    z-index: 1000;
+    font-size:13px;
+}
+
+.inactive-button {
+    pointer-events: none;
+    cursor: default;
+}

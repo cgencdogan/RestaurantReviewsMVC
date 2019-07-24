@@ -1,0 +1,55 @@
+﻿@model RestaurantReviews.WebUI.Models.ImageListVm
+
+<div id="photo-section">
+    <h1>FOTOĞRAFLAR</h1>
+
+    <ul class="list-inline">
+        @if (Model.RestaurantImages != null) {
+            foreach (var item in Model.RestaurantImages) {
+                <li><img class="image-thumbnail" data-target="#imageShowModal" data-toggle="modal" src="@item.ImgFilePath" /></li>
+            }
+        }
+        @if (HttpContext.Current.User.Identity.IsAuthenticated) {
+            <li><button class="glyphicon glyphicon-plus btn-add-detail-img" data-target="#imageModal" data-toggle="modal"></button></li>
+        }
+    </ul>
+</div>
+
+<!--Fotoğraf ekleme modal-->
+<div id="imageModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Fotoğraf Yükle</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="username"><span class="glyphicon glyphicon-camera"></span> Fotoğraf</label>
+                    <input type="file" class="form-control" id="image-path" name="image-path">
+                </div>
+                <input type="hidden" name="restaurant-id" value="" />
+                <input type="submit" id="add-restaurant-image-gallery" value="Yükle" class="btn btn-danger form-control" restaurant-id="@Model.RestaurantId" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Fotoğraf görüntüleme modal-->
+<div id="imageShowModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="">
+                    <img src="" id="clicked-image" class="img-responsive center-block" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

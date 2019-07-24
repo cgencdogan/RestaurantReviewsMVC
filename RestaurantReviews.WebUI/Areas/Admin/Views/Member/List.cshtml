@@ -1,0 +1,61 @@
+﻿@model RestaurantReviews.WebUI.Areas.Admin.Models.PanelMemberListVm
+@{
+    ViewBag.Title = "MemberList";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        @if (ViewBag.isConfirmed) {
+            <h6 class="m-0 font-weight-bold text-primary">Aktif Kullanıcılar</h6>
+        }
+        else {
+            <h6 class="m-0 font-weight-bold text-primary">E-mail Aktivasyonu Yapmamış Kullanıcılar</h6>
+        }
+    </div>
+    <div class="card-body">
+        <div class="input-group col-md-5">
+            <input type="text" id="username-searchkey" value="@Model.SearchWord" class="form-control bg-light border-0 small" placeholder="Kullanıcı adına göre ara..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="btn-searchby-username">
+                    Ara <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+        <br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>E-mail</th>
+                    <th>Toplam Yorum</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.MemberList.Count(); i++) {
+                    <tr>
+                        <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
+                        <td><a href="#"><span id="username-@Model.MemberList[i].AppUserId">@Model.MemberList[i].Username</span></a></td>
+                        <td>@Model.MemberList[i].Email</td>
+                        <td>@Model.MemberList[i].ReviewCount</td>
+                        <td>
+                            <a href="#" title="Şifre Değiştir"><i class="fas fa-fw fa-key user-change-password" userid="@Model.MemberList[i].AppUserId"></i></a>
+                            <a href="#" title="Kullanıcıyı Pasife Al">
+                                <i class="fas fa-fw fa-lock deactivate-user" userid="@Model.MemberList[i].AppUserId"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li><a href="#" class="member-list-pagination" id="prev-page">&lt;Önceki</a></li>
+            <li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><a href="#" class="member-list-pagination" id="next-page">Sonraki&gt;</a></li>
+        </ul>
+        <input type="hidden" id="max-page" name="MaxPage" value="@Model.MaxPage" />
+    </div>
+</div>
+@*@Scripts.Render("~/bundles/adminmemberjs")*@
+<script src="~/Areas/Admin/Scripts/Member/Member.js"></script>

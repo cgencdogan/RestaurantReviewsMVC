@@ -1,0 +1,91 @@
+﻿@model RestaurantReviews.WebUI.Areas.Admin.Models.PanelRestaurantListVm
+@{
+    ViewBag.Title = "RestaurantList";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary d-inline-block">Aktif Restoranlar</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="input-group col-md-5">
+                <input type="text" id="restaurant-name-searchkey" value="@Model.SearchWord" class="form-control bg-light border-0 small" placeholder="Restoran adına göre ara..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="btn-searchby-restaurant-name">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <a href="/yonetim-paneli/restoran-ekle" class="btn btn-danger btn-icon-split" id="add-new-restaurant">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus-square"></i>
+                    </span>
+                    <span class="text">Yeni Restoran Ekle</span>
+                </a>
+            </div>
+        </div>
+        <br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>İsim</th>
+                    <th>Telefon</th>
+                    <th>Adres</th>
+                    <th>İlçe</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.RestaurantList.Count(); i++) {
+                    <tr>
+                        <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
+                        <td><a href="/restoran-detay?id=@Model.RestaurantList[i].Id"><span id="restaurant-name-@Model.RestaurantList[i].Id">@Model.RestaurantList[i].Name</span></a></td>
+                        <td>@Model.RestaurantList[i].PhoneNumber</td>
+                        <td>@Model.RestaurantList[i].Adress</td>
+                        <td><a href="/tum-restoranlar?districtId=@Model.RestaurantList[i].District.Id">@Model.RestaurantList[i].District.Name</a></td>
+                        <td>
+                            <a href="/yonetim-paneli/restoran-guncelle?id=@Model.RestaurantList[i].Id"><i title="Resotran Bilgilerini Düzenle" class="fas fa-fw fa-edit edit-restaurant" id="edit-@Model.RestaurantList[i].Id"></i></a>
+                            <a href="#">
+                                <i title="Restoranı Pasife Al" class="fas fa-fw fa-lock deactivate-restaurant" id="delete-@Model.RestaurantList[i].Id" @*data-target="#deleteModal" data-toggle="modal"*@></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li><a href="#" class="restaurant-list-pagination" id="prev-page">&lt;Önceki</a></li>
+            <li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><a href="#" class="restaurant-list-pagination" id="next-page">Sonraki&gt;</a></li>
+        </ul>
+        <input type="hidden" id="max-page" name="MaxPage" value="@Model.MaxPage" />
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Restoran Sil</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/panel/admin/deleterestaurant" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <h4><span id="delete-restaurant-name">X</span> adlı restoran silinecek. Emin misiniz?</h4>
+                    </div>
+                    <input id="delete-restaurant-id" type="hidden" name="id" value="" />
+                    <input id="delete-restaurant-button" type="submit" value="Sil" class="btn btn-danger form-control" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Areas/Admin/Scripts/Restaurant/Restaurant.js"></script>

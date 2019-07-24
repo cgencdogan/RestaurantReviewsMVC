@@ -1,0 +1,62 @@
+﻿@model RestaurantReviews.WebUI.Areas.Admin.Models.FeatureVm
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary d-inline-block">Servisler</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="input-group col-md-5">
+                <input type="text" id="feature-searchkey" value="@Model.SearchWord" class="form-control bg-light border-0 small" placeholder="Servis adına göre ara..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="btn-searchby-feature-name">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="btn btn-danger btn-icon-split" id="add-new-feature">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus-square"></i>
+                    </span>
+                    <span class="text">Yeni Servis Ekle</span>
+                </a>
+            </div>
+        </div>
+        <br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>İsim</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Features.Count(); i++) {
+                    <tr>
+                        <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
+                        <td><span id="feature-name-@Model.Features[i].Id">@Model.Features[i].Name</span></td>
+                        <td>
+                            <a href="#"><i title="Servis İsmini Değiştir" class="fas fa-fw fa-edit edit-feature-name" featureid="@Model.Features[i].Id"></i></a>
+                            <a href="#">
+                                <i title="Servisi Sil" class="fas fa-fw fa-trash delete-feature" featureid="@Model.Features[i].Id"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li><a href="#" class="feature-list-pagination" id="prev-page">&lt;Önceki</a></li>
+            <li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><a href="#" class="feature-list-pagination" id="next-page">Sonraki&gt;</a></li>
+        </ul>
+        <input type="hidden" id="max-page" name="MaxPage" value="@Model.MaxPage" />
+    </div>
+</div>
+<script src="~/Areas/Admin/Scripts/Feature/FeatureList.js"></script>

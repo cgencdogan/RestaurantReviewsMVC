@@ -1,0 +1,50 @@
+﻿@model RestaurantReviews.WebUI.Areas.Member.Models.ReviewListVm
+@{
+    ViewBag.Title = "Reviews";
+}
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Yorumlarım</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Restoran</th>
+                    <th>Tarih</th>
+                    <th>Puan</th>
+                    <th>Yorum</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count(); i++) {
+                    <tr>
+                        <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
+                        <td id="restaurant-name-@Model[i].Id"><a href="/restaurant/detail/@Model[i].Restaurant.Id">@Model[i].Restaurant.Name</a></td>
+                        <td>@Model[i].AddedDate</td>
+                        <td>@Model[i].Score</td>
+                        <td id="review-content-@Model[i].Id">@Model[i].Content</td>
+                        <td>
+                            <a href="#" title="Yorumu Düzenle"><i class="fas fa-fw fa-edit edit-review" id="edit-review-@Model[i].Id"></i></a>
+                            <a href="#" title="Yorumu Sil">
+                                <i class="fas fa-fw fa-trash delete-review" id="delete-review-@Model[i].Id" data-target="#deleteReviewModal" data-toggle="modal"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        <ul class="pagination">
+            <li><a href="#" class="my-reviews-pagination" id="prev-page">&lt;Önceki</a></li>
+            <li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><a href="#" class="my-reviews-pagination" id="next-page">Sonraki&gt;</a></li>
+        </ul>
+        <input type="hidden" id="max-page" name="MaxPage" value="@Model.MaxPage" />
+    </div>
+</div>
+<script src="~/Areas/Member/Scripts/Review/ReviewList.js"></script>
