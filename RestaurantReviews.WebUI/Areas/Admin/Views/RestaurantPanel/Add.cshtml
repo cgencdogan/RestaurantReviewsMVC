@@ -1,0 +1,142 @@
+﻿@model RestaurantReviews.WebUI.Areas.Admin.Models.AddRestaurantVm
+@{
+    ViewBag.Title = "AddRestaurant";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Yeni Restoran Ekle</h6>
+    </div>
+    @* ----- BEGIN ADD RESTAURANT FORM ----- *@
+    <div class="card-body">
+        @* ----- BEGIN RestaurantName ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="fname">Restoran Adı:</label>
+            </div>
+            <div class="col-60">
+                <input type="text" id="add-restaurant-name" name="RestaurantName" placeholder="Restoran adını yazın...">
+            </div>
+        </div>
+        @* ----- END RestaurantName ----- *@
+        @* ----- BEGIN RestaurantDistrict ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="add-restaurant-district">İlçe:</label>
+            </div>
+            <div class="col-60">
+                <select id="add-restaurant-district" name="RestaurantDistrict">
+                    @foreach (var item in Model.Districts) {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        @* ----- END RestaurantDistrict ----- *@
+        @* ----- BEGIN PhoneNumber ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="add-restaurant-phone">Telefon:</label>
+            </div>
+            <div class="col-60">
+                <input type="text" id="add-restaurant-phone" name="PhoneNumber" placeholder="5xxxxxxxxx">
+            </div>
+        </div>
+        @* ----- END PhoneNumber ----- *@
+        @* ----- BEGIN Adress ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="add-restaurant-adress">Adres:</label>
+            </div>
+            <div class="col-60">
+                <input type="text" id="add-restaurant-adress" name="Adress" placeholder="Restoran adresini yazın...">
+            </div>
+        </div>
+        @* ----- END Adress ----- *@
+        @* ----- BEGIN Image Upload ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="add-restaurant-adress">Resim:</label>
+            </div>
+            <div class="col-60">
+                <input type="file" id="add-restaurant-image" name="RestaurantImage">
+            </div>
+        </div>
+        @* ----- END Image Upload ----- *@
+        @* ----- BEGIN Image Preview ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="add-restaurant-adress"></label>
+            </div>
+            <div class="col-60">
+                <img id="cover-preview" style="width:640px;height:360px;border:1px solid black" />
+            </div>
+        </div>
+        @* ----- END Image Preview ----- *@
+        @* ----- BEGIN RestaurantCategories ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="subject">Kategori:</label>
+            </div>
+            <div class="col-60">
+                <div class="row">
+                    @{ double halfCategoryCount = Math.Ceiling(Model.Categories.Count() / 2.0f);
+                        var halfCategoryCountInt = Convert.ToInt32(halfCategoryCount);}
+                    <div class="col-50">
+                        <ul class="add-restaurant-features">
+                            @for (int i = 0; i < halfCategoryCountInt; i++) {
+                                <li>@Html.CheckBox(Model.Categories[i].Id.ToString(), new { @class = "add-restaurant-category" })<span> @Model.Categories[i].Name</span></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-50">
+                        <ul class="add-restaurant-features">
+                            @for (int i = halfCategoryCountInt; i < Model.Categories.Count(); i++) {
+                                <li>@Html.CheckBox(Model.Categories[i].Id.ToString(), new { @class = "add-restaurant-category" })<span> @Model.Categories[i].Name</span></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* ----- END RestaurantCategories ----- *@
+        @* ----- BEGIN RestaurantFeatures ----- *@
+        <div class="row">
+            <div class="col-20">
+                <label for="subject">Özellikler:</label>
+            </div>
+            <div class="col-60">
+                <div class="row">
+                    @{ double halfFeatureCount = Math.Ceiling(Model.Features.Count() / 2.0f);
+                        var halfFeatureCountInt = Convert.ToInt32(halfFeatureCount);}
+                    <div class="col-50">
+                        <ul class="add-restaurant-features">
+                            @for (int i = 0; i < halfFeatureCountInt; i++) {
+                                <li>@Html.CheckBox(Model.Features[i].Id.ToString(), new { @class = "add-restaurant-feature" })<span> @Model.Features[i].Name</span></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-50">
+                        <ul class="add-restaurant-features">
+                            @for (int i = halfFeatureCountInt; i < Model.Features.Count(); i++) {
+                                <li>@Html.CheckBox(Model.Features[i].Id.ToString(), new { @class = "add-restaurant-feature" })<span> @Model.Features[i].Name</span></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* ----- END RestaurantFeatures ----- *@
+        @* ----- BEGIN Submit Button ----- *@
+        <div class="row">
+            <div class="col-20">
+            </div>
+            <div class="col-60">
+                <input type="submit" value="Restoran Ekle" id="add-restaurant-button">
+            </div>
+        </div>
+        @* ----- END Submit Button ----- *@
+    </div>
+    @* ----- END ADD RESTAURANT FORM ----- *@
+</div>
+<script src="~/Areas/Admin/Scripts/Restaurant/Restaurant.js"></script>

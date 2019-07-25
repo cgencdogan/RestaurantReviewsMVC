@@ -1,0 +1,63 @@
+﻿@model RestaurantReviews.WebUI.Areas.Admin.Models.CategoryListVm
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary d-inline-block">Kategoriler</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="input-group col-md-5">
+                <input type="text" id="category-searchkey" value="@Model.SearchWord" class="form-control bg-light border-0 small" placeholder="Kategori adına göre ara..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="btn-searchby-category-name">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="btn btn-danger btn-icon-split" id="add-new-category">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus-square"></i>
+                    </span>
+                    <span class="text">Yeni Kategori Ekle</span>
+                </a>
+            </div>
+        </div>
+        <br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>İsim</th>
+                    <th class="text-center">Restoran Sayısı</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Categories.Count(); i++) {
+                    <tr>
+                        <td>@((i + 1) + (Model.PageNumber * Model.ShownAmount))</td>
+                        <td><a href="/tum-restoranlar?categoryId=@Model.Categories[i].Category.Id"><span id="category-name-@Model.Categories[i].Category.Id">@Model.Categories[i].Category.Name</span></a></td>
+                        <td class="text-center">@Model.Categories[i].Count</td>
+                        <td>
+                            <a href="#"><i title="Kategori İsmini Değiştir" class="fas fa-fw fa-edit edit-category-name" categoryId="@Model.Categories[i].Category.Id"></i></a>
+                            <a href="#">
+                                <i title="Kategoriyi Sil" class="fas fa-fw fa-trash delete-category" categoryId="@Model.Categories[i].Category.Id"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li><a href="#" class="category-list-pagination" id="prev-page">&lt;Önceki</a></li>
+            <li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+            <li><a href="#" class="category-list-pagination" id="next-page">Sonraki&gt;</a></li>
+        </ul>
+        <input type="hidden" id="max-page" name="MaxPage" value="@Model.MaxPage" />
+    </div>
+</div>
+<script src="~/Areas/Admin/Scripts/Category/CategoryList.js"></script>

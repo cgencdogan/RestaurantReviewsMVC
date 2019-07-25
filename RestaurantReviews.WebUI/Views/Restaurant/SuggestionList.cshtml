@@ -1,0 +1,85 @@
+﻿@model RestaurantReviews.WebUI.Models.SugestionListVm
+
+@if (Model.RestaurantsInSameDistrict.Count > 0) {
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><a href="/tum-restoranlar?districtId=@Model.District.Id"><span>@Model.District.Name</span></a> İlçesindeki Diğer Restoranlar</div>
+            <div class="panel-body">
+                @for (int i = 0; i < @Model.RestaurantsInSameDistrict.Count(); i += 2) {
+                    <div class="row">
+                        @if (i < @Model.RestaurantsInSameDistrict.Count()) {
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="@Model.RestaurantsInSameDistrict[i].PicturePath" />
+                                <a href="/restoran-detay?id=@Model.RestaurantsInSameDistrict[i].Id"><span>@Model.RestaurantsInSameDistrict[i].Name</span></a><br />
+                                @if (@Model.RestaurantsInSameDistrict[i].Score == null) {
+                                    <span>Puan Yok</span>
+                                }
+                                else {
+                                    <span>Puan: @Model.RestaurantsInSameDistrict[i].Score/5</span>
+                                }
+                            </div>
+                        }
+                        @if (i + 1 < @Model.RestaurantsInSameDistrict.Count()) {
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="@Model.RestaurantsInSameDistrict[i+1].PicturePath" />
+                                <a href="/restoran-detay?id=@Model.RestaurantsInSameDistrict[i+1].Id"><span>@Model.RestaurantsInSameDistrict[i + 1].Name</span></a><br />
+                                @if (@Model.RestaurantsInSameDistrict[i + 1].Score == null) {
+                                    <span>Puan Yok</span>
+                                }
+                                else {
+                                    <span>Puan: @Model.RestaurantsInSameDistrict[i + 1].Score/5</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+}
+@if (Model.RestaurantsInSameCategories.Count > 0) {
+    int j = 0;
+    foreach (var restaurantList in Model.RestaurantsInSameCategories) {
+        if (restaurantList.Count > 0) {
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><a href="/tum-restoranlar?categoryId=@Model.Categories[j].Id"><span>@Model.Categories[j].Name</span></a> Kategorisinde Diğer Restoranlar</div>
+                    <div class="panel-body">
+                        @for (int i = 0; i < @restaurantList.Count(); i += 2) {
+                            <div class="row">
+                                @if (i < @restaurantList.Count()) {
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="@restaurantList[i].PicturePath" />
+                                        <a href="/restoran-detay?id=@restaurantList[i].Id"><span>@restaurantList[i].Name</span></a><br />
+                                        @if (@restaurantList[i].Score == null) {
+                                            <span>Puan Yok</span>
+                                        }
+                                        else {
+                                            <span>Puan: @restaurantList[i].Score/5</span>
+                                        }
+                                    </div>
+                                }
+                                @if (i + 1 < @restaurantList.Count()) {
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="@restaurantList[i+1].PicturePath" />
+                                        <a href="/restoran-detay?id=@restaurantList[i+1].Id"><span>@restaurantList[i + 1].Name</span></a><br />
+                                        @if (@restaurantList[i + 1].Score == null) {
+                                            <span>Puan Yok</span>
+                                        }
+                                        else {
+                                            <span>Puan: @restaurantList[i + 1].Score/5</span>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <br />
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        j++;
+    }
+
+}
