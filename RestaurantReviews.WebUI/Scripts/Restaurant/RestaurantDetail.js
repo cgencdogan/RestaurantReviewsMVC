@@ -21,7 +21,6 @@ $(document).on("click", "#add-review-button", function () {
         })
         return;
     }
-    console.log("swal sonra");
     var data = {
         RestaurantId: restaurantId,
         Content: content,
@@ -63,24 +62,41 @@ $(document).on("click", ".review-pagination", function () {
     }, 500);
 });
 
-
 //RestaurantDetails Fotoğraf Ekleme
 $("#add-restaurant-image-gallery").click(function () {
     var data = new FormData();
     var restaurantImage = $("#image-path").prop("files")[0];
-    data.append("RestaurantImage", restaurantImage);
-    var restaurantId = $(this).attr("restaurant-id");
-    data.append("RestaurantId", restaurantId);
-    $.ajax({
-        url: "/image/add",
-        method: "post",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (res) {
-            window.location.reload(true);
+    if (restaurantImage.type == "image/png" || restaurantImage.type == "image/jpg" || restaurantImage.type == "image/jpeg") {
+        if (restaurantImage.size < 2000000) {
+            data.append("RestaurantImage", restaurantImage);
+            var restaurantId = $(this).attr("restaurant-id");
+            data.append("RestaurantId", restaurantId);
+            $.ajax({
+                url: "/image/add",
+                method: "post",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (res) {
+                    if (res.invalidFormat) {
+                        imageTypeInvalidSwal();
+                    }
+                    else if (res.invalidSize) {
+                        imageSizeExceededSwal();
+                    }
+                    else {
+                        window.location.reload(true);
+                    }
+                }
+            });
         }
-    });
+        else {
+            imageSizeExceededSwal();
+        }
+    }
+    else {
+        imageTypeInvalidSwal();
+    }
 });
 
 //RestaurantDetails Fotoğraf Görüntüleme
@@ -88,3 +104,21 @@ $(".image-thumbnail").click(function () {
     var imgPath = $(this).attr("src");
     $("#clicked-image").attr("src", imgPath);
 });
+
+function imageSizeExceededSwal() {
+    Swal.fire({
+        title: 'Dosya çok büyük',
+        type: 'warning',
+        text: 'Yüklemek istediğiniz fotoğrafın boyutu 2 MB dan küçük olmalıdır.',
+        confirmButtonText: 'Tamam'
+    })
+}
+
+function imageTypeInvalidSwal() {
+    Swal.fire({
+        title: 'Dosya uygun değil',
+        type: 'warning',
+        text: 'Yüklemek istediğiniz fotoğraf .jpeg, .jpg veya .png uzantılı olmalıdır.',
+        confirmButtonText: 'Tamam'
+    })
+}
