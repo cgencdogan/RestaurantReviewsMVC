@@ -1,1 +1,0 @@
-# Restoran İnceleme
