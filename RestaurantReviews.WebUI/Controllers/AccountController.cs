@@ -2,6 +2,7 @@
 using Microsoft.Owin.Security;
 using RestaurantReviews.BLL.Service;
 using RestaurantReviews.Models.Entities.Identity;
+using RestaurantReviews.WebUI.Managers;
 using RestaurantReviews.WebUI.Models;
 using System;
 using System.Net.Mail;
@@ -45,6 +46,7 @@ namespace RestaurantReviews.WebUI.Controllers {
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult SignUp(SignUpVm data) {
+            var mailManager = new MailManager();
             if (ModelState.IsValid) {
                 var userManager = service.Uow.Users;
                 userManager.Create(new AppUser {
@@ -59,26 +61,10 @@ namespace RestaurantReviews.WebUI.Controllers {
                 var user = userManager.FindByName(data.SignupUsername);
                 userManager.AddToRole(user.Id, "default_user");
 
-                MailMessage mail = new MailMessage("restaurantreviewstr@gmail.com", data.Email);
-                mail.Subject = "Restoran İnceleme E-posta Aktivasyonu";
                 Uri uri = new Uri(Request.Url.ToString());
-                mail.Body = "Lütfen bağlantıya tıklayarak üyeliğinizi aktif ediniz: " + uri.GetLeftPart(UriPartial.Authority) + "/account/mailverify?username=" + user.UserName + "&confirmationCode=" + user.EmailVerificationCode;
-
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-
-                smtpClient.Credentials = new System.Net.NetworkCredential() {
-                    UserName = "restaurantreviewstr@gmail.com",
-                    Password = "caner_123"
-                };
-
-                smtpClient.EnableSsl = true;
-                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
-                        System.Security.Cryptography.X509Certificates.X509Certificate certificate,
-                        System.Security.Cryptography.X509Certificates.X509Chain chain,
-                        System.Net.Security.SslPolicyErrors sslPolicyErrors) {
-                            return true;
-                        };
-                smtpClient.Send(mail);
+                string mailSubject = "Restoran İnceleme E-posta Aktivasyonu";
+                string mailBody = "Lütfen bağlantıya tıklayarak üyeliğinizi aktif ediniz: " + uri.GetLeftPart(UriPartial.Authority) + "/account/mailverify?username=" + user.UserName + "&confirmationCode=" + user.EmailVerificationCode;
+                mailManager.SendMail("restaurantreviewstr@gmail.com", "xxxxxxxx", data.Email, mailSubject, mailBody);
 
                 return RedirectToAction("Index", "Home");
             }
