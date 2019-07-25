@@ -22,11 +22,13 @@ $(document).on("click", ".member-list-pagination", function () {
 $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     var pageNumber = urlParams.get("pageNumber");
+    console.log("p:" + pageNumber);
     if (pageNumber < 1) {
         $("#prev-page").removeAttr("href");
         $("#prev-page").addClass("inactive-link");
     }
     var maxPage = $("#max-page").val();
+    console.log("m: " + maxPage);
     if (pageNumber >= maxPage - 1) {
         $("#next-page").removeAttr("href");
         $("#next-page").addClass("inactive-link");
@@ -72,6 +74,7 @@ $(".reactivate-user").click(function () {
 //Kullanıcı Şifre Değiştir
 $(".user-change-password").click(function () {
     var id = $(this).attr("userid");
+    console.log(id);
     var userName = $("#username-" + id).text();
     var password = "";
     var passwordConfirm = "";
