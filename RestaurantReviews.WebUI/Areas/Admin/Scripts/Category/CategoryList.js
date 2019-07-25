@@ -102,13 +102,11 @@ $(document).on("click", ".category-list-pagination", function () {
 $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     var pageNumber = urlParams.get("pageNumber");
-    console.log("p:" + pageNumber);
     if (pageNumber < 1) {
         $("#prev-page").removeAttr("href");
         $("#prev-page").addClass("inactive-link");
     }
     var maxPage = $("#max-page").val();
-    console.log("m: " + maxPage);
     if (pageNumber >= maxPage - 1) {
         $("#next-page").removeAttr("href");
         $("#next-page").addClass("inactive-link");

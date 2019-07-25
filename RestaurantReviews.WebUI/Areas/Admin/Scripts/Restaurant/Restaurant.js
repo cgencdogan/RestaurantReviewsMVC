@@ -191,8 +191,6 @@ $(document).ready(function () {
         $("#prev-page").addClass("inactive-link");
     }
     var maxPage = $("#max-page").val();
-    console.log(pageNumber);
-    console.log(maxPage);
     if (pageNumber >= maxPage - 1) {
         $("#next-page").removeAttr("href");
         $("#next-page").addClass("inactive-link");

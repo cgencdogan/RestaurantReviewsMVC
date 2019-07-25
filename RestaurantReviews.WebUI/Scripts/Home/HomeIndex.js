@@ -37,7 +37,6 @@ $(document).ready(function () {
 //Kategori adına göre arama
 $("#search-by-category").click(function () {
     var searchWord = $("#home-search-word").val();
-    console.log(searchWord);
     var data = {
         searchWord: searchWord
     };
@@ -54,7 +53,6 @@ $("#search-by-category").click(function () {
 //İlçe adına göre arama
 $("#search-by-district").click(function () {
     var searchWord = $("#home-search-word").val();
-    console.log(searchWord);
     var data = {
         searchWord: searchWord
     };

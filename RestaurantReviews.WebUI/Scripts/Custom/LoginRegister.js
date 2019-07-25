@@ -1,8 +1,6 @@
 ﻿$("#btn-login").click(function () {
     var username = $("#username").val();
-    console.log(username);
     var password = $("#password").val();
-    console.log(password);
     var redirectUrl = $("#redirect-url").val();
     var token = $('[name=__RequestVerificationToken]').val();
 
