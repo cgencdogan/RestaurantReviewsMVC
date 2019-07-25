@@ -5,7 +5,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Yeni Restoran Ekle</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Restoran Bilgilerini Güncelle</h6>
     </div>
     @* ----- BEGIN ADD RESTAURANT FORM ----- *@
     <div class="card-body">
@@ -84,7 +84,7 @@
                     @{ double halfCategoryCount = Math.Ceiling(Model.Categories.Count() / 2.0f);
                         var halfCategoryCountInt = Convert.ToInt32(halfCategoryCount);}
                     <div class="col-50">
-                        <ul class="update-restaurant-features">
+                        <ul class="update-restaurant-categories">
                             @for (int i = 0; i < halfCategoryCountInt; i++) {
                                 if (@Model.CategoryIds.Contains(Model.Categories[i].Id)) {
                                     <li>@Html.CheckBox(Model.Categories[i].Id.ToString(), true, new { @class = "update-restaurant-category" })<span> @Model.Categories[i].Name</span></li>
@@ -96,7 +96,7 @@
                         </ul>
                     </div>
                     <div class="col-50">
-                        <ul class="update-restaurant-features">
+                        <ul class="update-restaurant-categories">
                             @for (int i = halfCategoryCountInt; i < Model.Categories.Count(); i++) {
                                 if (@Model.CategoryIds.Contains(Model.Categories[i].Id)) {
                                     <li>@Html.CheckBox(Model.Categories[i].Id.ToString(), true, new { @class = "update-restaurant-category" })<span> @Model.Categories[i].Name</span></li>
@@ -124,10 +124,10 @@
                         <ul class="update-restaurant-features">
                             @for (int i = 0; i < halfFeatureCountInt; i++) {
                                 if (Model.FeatureIds.Contains(Model.Features[i].Id)) {
-                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), true, new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Content</span></li>
+                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), true, new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Name</span></li>
                                 }
                                 else {
-                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Content</span></li>
+                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Name</span></li>
                                 }
                             }
                         </ul>
@@ -136,10 +136,10 @@
                         <ul class="update-restaurant-features">
                             @for (int i = halfFeatureCountInt; i < Model.Features.Count(); i++) {
                                 if (Model.FeatureIds.Contains(Model.Features[i].Id)) {
-                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), true, new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Content</span></li>
+                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), true, new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Name</span></li>
                                 }
                                 else {
-                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Content</span></li>
+                                    <li>@Html.CheckBox(Model.Features[i].Id.ToString(), new { @class = "update-restaurant-feature" })<span> @Model.Features[i].Name</span></li>
                                 }
                             }
                         </ul>

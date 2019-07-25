@@ -22,27 +22,31 @@
                     <th>Tarih</th>
                     <th>Puan</th>
                     <th>Yorum</th>
-                    <th>İşlem</th>
+                    <th class="text-right islem-width">İşlem</th>
                 </tr>
             </thead>
             <tbody>
                 @for (int i = 0; i < Model.PanelReviews.Count(); i++) {
-                    <tr id="review-row-@Model.PanelReviews[i].ReviewId">
-                        <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
-                        <td id="username-@Model.PanelReviews[i].ReviewId">@Model.PanelReviews[i].Username</td>
-                        <td id="restaurant-name-@Model.PanelReviews[i].ReviewId"><a href="/restoran-detay?id=@Model.PanelReviews[i].RestaurantId">@Model.PanelReviews[i].RestaurantName</a></td>
-                        <td>@Model.PanelReviews[i].ReviewDate</td>
-                        <td>@Model.PanelReviews[i].Score</td>
-                        <td id="review-content-@Model.PanelReviews[i].ReviewId">@Model.PanelReviews[i].ReviewContent</td>
-                        <td>
-                            <a href="#" title="Yorumu Düzenle"><i class="fas fa-fw fa-edit edit-review" reviewId="@Model.PanelReviews[i].ReviewId"></i></a>
-                            @if (Request.QueryString["confirmed"] == "false") {
-                                <a href="#" title="Yorumu Onayla"><i class="fas fa-fw fa-check confirm-review" reviewId="@Model.PanelReviews[i].ReviewId"></i></a>
-                            }
-                            <a href="#" title="Yorumu Sil">
-                                <i class="fas fa-fw fa-trash delete-review" reviewId="@Model.PanelReviews[i].ReviewId"></i>
-                            </a>
-                        </td>
+                    <tr class="list-min-height" id="review-row-@Model.PanelReviews[i].ReviewId">
+                            <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
+                            <td id="username-@Model.PanelReviews[i].ReviewId">@Model.PanelReviews[i].Username</td>
+                            <td id="restaurant-name-@Model.PanelReviews[i].ReviewId"><a href="/restoran-detay?id=@Model.PanelReviews[i].RestaurantId">@Model.PanelReviews[i].RestaurantName</a></td>
+                            <td>@Model.PanelReviews[i].ReviewDate</td>
+                            <td>@Model.PanelReviews[i].Score</td>
+                            <td id="review-content-@Model.PanelReviews[i].ReviewId">@Model.PanelReviews[i].ReviewContent</td>
+                            <td class="text-right">
+                                <a class="btn btn-danger btn-sm" href="#" title="Yorumu Düzenle">
+                                    <i class="fas fa-fw fa-edit edit-review" reviewId="@Model.PanelReviews[i].ReviewId"></i>
+                                </a>
+                                @if (Request.QueryString["confirmed"] == "false") {
+                                    <a class="btn btn-danger btn-sm confirm-review" reviewId="@Model.PanelReviews[i].ReviewId" href="#" title="Yorumu Onayla">
+                                        <i class="fas fa-fw fa-check"></i>
+                                    </a>
+                                }
+                                <a class="btn btn-danger btn-sm delete-review" reviewId="@Model.PanelReviews[i].ReviewId" href="#" title="Yorumu Sil">
+                                    <i class="fas fa-fw fa-trash"></i>
+                                </a>
+                            </td>
                     </tr>
                 }
             </tbody>

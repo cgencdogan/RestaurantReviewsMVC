@@ -26,10 +26,12 @@
                         <td><a href="#"><span id="username-@Model.MemberList[i].AppUserId">@Model.MemberList[i].Username</span></a></td>
                         <td>@Model.MemberList[i].Email</td>
                         <td>@Model.MemberList[i].ReviewCount</td>
-                        <td>
-                            <a href="#" title="Geri Aktif Et"><i class="fas fa-fw fa-redo reactivate-user" userId="@Model.MemberList[i].AppUserId"></i></a>
-                            <a href="#" title="Kalıcı Olarak Sil">
-                                <i class="fas fa-fw fa-trash perm-delete-user" userId="@Model.MemberList[i].AppUserId"></i>
+                        <td class="text-right">
+                            <a class="btn btn-danger btn-sm reactivate-user" userId="@Model.MemberList[i].AppUserId" href="#" title="Geri Aktif Et">
+                                <i class="fas fa-fw fa-redo"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm perm-delete-user" userId="@Model.MemberList[i].AppUserId" href="#" title="Kalıcı Olarak Sil">
+                                <i class="fas fa-fw fa-trash"></i>
                             </a>
                         </td>
                     </tr>

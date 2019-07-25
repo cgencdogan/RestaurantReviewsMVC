@@ -101,3 +101,15 @@ input[type=submit] {
     cursor: default;
     color: gray !important;
 }
+.add-new{
+    margin-left:auto;
+    margin-right:10px;
+}
+
+.islem-width{
+    min-width:140px;
+}
+
+.list-min-height{
+    height:75px;
+}

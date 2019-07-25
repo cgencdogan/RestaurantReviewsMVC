@@ -17,7 +17,7 @@
                     </button>
                 </div>
             </div>
-            <div>
+            <div class="add-new">
                 <a href="#" class="btn btn-danger btn-icon-split" id="add-new-category">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus-square"></i>
@@ -33,7 +33,7 @@
                     <th>#</th>
                     <th>İsim</th>
                     <th class="text-center">Restoran Sayısı</th>
-                    <th>İşlem</th>
+                    <th class="text-right">İşlem</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,10 +42,12 @@
                         <td>@((i + 1) + (Model.PageNumber * Model.ShownAmount))</td>
                         <td><a href="/tum-restoranlar?categoryId=@Model.Categories[i].Category.Id"><span id="category-name-@Model.Categories[i].Category.Id">@Model.Categories[i].Category.Name</span></a></td>
                         <td class="text-center">@Model.Categories[i].Count</td>
-                        <td>
-                            <a href="#"><i title="Kategori İsmini Değiştir" class="fas fa-fw fa-edit edit-category-name" categoryId="@Model.Categories[i].Category.Id"></i></a>
-                            <a href="#">
-                                <i title="Kategoriyi Sil" class="fas fa-fw fa-trash delete-category" categoryId="@Model.Categories[i].Category.Id"></i>
+                        <td class="text-right">
+                            <a class="btn btn-danger btn-sm edit-category-name" categoryId="@Model.Categories[i].Category.Id" href="#" title="Kategori İsmini Değiştir">
+                                <i class="fas fa-fw fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm delete-category" categoryId="@Model.Categories[i].Category.Id" href="#" title="Kategoriyi Sil">
+                                <i class="fas fa-fw fa-trash"></i>
                             </a>
                         </td>
                     </tr>

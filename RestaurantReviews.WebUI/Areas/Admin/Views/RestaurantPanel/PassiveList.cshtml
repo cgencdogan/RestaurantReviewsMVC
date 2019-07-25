@@ -25,20 +25,23 @@
                     <th>Telefon</th>
                     <th>Adres</th>
                     <th>İlçe</th>
-                    <th>İşlem</th>
+                    <th class="text-right">İşlem</th>
                 </tr>
             </thead>
             <tbody>
                 @for (int i = 0; i < Model.RestaurantList.Count(); i++) {
-                    <tr>
+                    <tr class="list-min-height">
                         <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
                         <td><a href="/restoran-detay?id=@Model.RestaurantList[i].Id"><span id="restaurant-name-@Model.RestaurantList[i].Id">@Model.RestaurantList[i].Name</span></a></td>
                         <td>@Model.RestaurantList[i].PhoneNumber</td>
                         <td>@Model.RestaurantList[i].Adress</td>
                         <td><a href="tum-restoranlar?districtId=@Model.RestaurantList[i].District.Id">@Model.RestaurantList[i].District.Name</a></td>
-                        <td>
-                            <a href="#"><i title="Restoranı Aktif Et" class="fas fa-fw fa-redo activate-restaurant" id="activate-@Model.RestaurantList[i].Id"></i></a> <a href="#">
-                                <i title="Kalıcı Olarak Sil" class="fas fa-fw fa-trash perm-delete-restaurant" id="perm-delete-@Model.RestaurantList[i].Id"></i>
+                        <td class="text-right">
+                            <a class="btn btn-danger btn-sm activate-restaurant" id="activate-@Model.RestaurantList[i].Id" href="#" title="Restoranı Aktif Et">
+                            <i class="fas fa-fw fa-redo"></i>
+                            </a> 
+                            <a class="btn btn-danger btn-sm perm-delete-restaurant" id="perm-delete-@Model.RestaurantList[i].Id" href="#" title="Kalıcı Olarak Sil">
+                                <i class="fas fa-fw fa-trash"></i>
                             </a>
                         </td>
                     </tr>

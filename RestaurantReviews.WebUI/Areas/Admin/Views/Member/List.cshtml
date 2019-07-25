@@ -5,7 +5,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        @if (ViewBag.isConfirmed) {
+        @if (Model.IsConfirmed) {
             <h6 class="m-0 font-weight-bold text-primary">Aktif Kullanıcılar</h6>
         }
         else {
@@ -29,7 +29,7 @@
                     <th>Kullanıcı Adı</th>
                     <th>E-mail</th>
                     <th>Toplam Yorum</th>
-                    <th>İşlem</th>
+                    <th class="text-right">İşlem</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,10 +39,12 @@
                         <td><a href="#"><span id="username-@Model.MemberList[i].AppUserId">@Model.MemberList[i].Username</span></a></td>
                         <td>@Model.MemberList[i].Email</td>
                         <td>@Model.MemberList[i].ReviewCount</td>
-                        <td>
-                            <a href="#" title="Şifre Değiştir"><i class="fas fa-fw fa-key user-change-password" userid="@Model.MemberList[i].AppUserId"></i></a>
-                            <a href="#" title="Kullanıcıyı Pasife Al">
-                                <i class="fas fa-fw fa-lock deactivate-user" userid="@Model.MemberList[i].AppUserId"></i>
+                        <td class="text-right">
+                            <a class="btn btn-danger btn-sm user-change-password" userid="@Model.MemberList[i].AppUserId" href="#" title="Şifre Değiştir">
+                            <i class="fas fa-fw fa-key"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm deactivate-user" userid="@Model.MemberList[i].AppUserId" href="#" title="Kullanıcıyı Pasife Al">
+                                <i class="fas fa-fw fa-lock"></i>
                             </a>
                         </td>
                     </tr>

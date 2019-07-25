@@ -83,14 +83,14 @@
                     @{ double halfCategoryCount = Math.Ceiling(Model.Categories.Count() / 2.0f);
                         var halfCategoryCountInt = Convert.ToInt32(halfCategoryCount);}
                     <div class="col-50">
-                        <ul class="add-restaurant-features">
+                        <ul class="add-restaurant-categories">
                             @for (int i = 0; i < halfCategoryCountInt; i++) {
                                 <li>@Html.CheckBox(Model.Categories[i].Id.ToString(), new { @class = "add-restaurant-category" })<span> @Model.Categories[i].Name</span></li>
                             }
                         </ul>
                     </div>
                     <div class="col-50">
-                        <ul class="add-restaurant-features">
+                        <ul class="add-restaurant-categories">
                             @for (int i = halfCategoryCountInt; i < Model.Categories.Count(); i++) {
                                 <li>@Html.CheckBox(Model.Categories[i].Id.ToString(), new { @class = "add-restaurant-category" })<span> @Model.Categories[i].Name</span></li>
                             }

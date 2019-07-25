@@ -18,7 +18,7 @@
                     </button>
                 </div>
             </div>
-            <div>
+            <div class="add-new">
                 <a href="#" class="btn btn-danger btn-icon-split" id="add-new-feature">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus-square"></i>
@@ -33,7 +33,7 @@
                 <tr>
                     <th>#</th>
                     <th>İsim</th>
-                    <th>İşlem</th>
+                    <th class="text-right">İşlem</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,10 +41,12 @@
                     <tr>
                         <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
                         <td><span id="feature-name-@Model.Features[i].Id">@Model.Features[i].Name</span></td>
-                        <td>
-                            <a href="#"><i title="Servis İsmini Değiştir" class="fas fa-fw fa-edit edit-feature-name" featureid="@Model.Features[i].Id"></i></a>
-                            <a href="#">
-                                <i title="Servisi Sil" class="fas fa-fw fa-trash delete-feature" featureid="@Model.Features[i].Id"></i>
+                        <td class="text-right">
+                            <a class="btn btn-danger btn-sm edit-feature-name" featureid="@Model.Features[i].Id" href="#" title="Servis İsmini Değiştir">
+                                <i class="fas fa-fw fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm delete-feature" featureid="@Model.Features[i].Id" href="#" title="Servisi Sil">
+                                <i class="fas fa-fw fa-trash"></i>
                             </a>
                         </td>
                     </tr>

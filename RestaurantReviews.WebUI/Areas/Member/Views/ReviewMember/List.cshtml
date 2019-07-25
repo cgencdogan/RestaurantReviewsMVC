@@ -17,21 +17,23 @@
                     <th>Tarih</th>
                     <th>Puan</th>
                     <th>Yorum</th>
-                    <th>İşlem</th>
+                    <th class="text-right">İşlem</th>
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Count(); i++) {
-                    <tr>
+                @for (int i = 0; i < Model.MyReviews.Count(); i++) {
+                    <tr class="list-min-height">
                         <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
-                        <td id="restaurant-name-@Model[i].Id"><a href="/restaurant/detail/@Model[i].Restaurant.Id">@Model[i].Restaurant.Name</a></td>
-                        <td>@Model[i].AddedDate</td>
-                        <td>@Model[i].Score</td>
-                        <td id="review-content-@Model[i].Id">@Model[i].Content</td>
-                        <td>
-                            <a href="#" title="Yorumu Düzenle"><i class="fas fa-fw fa-edit edit-review" id="edit-review-@Model[i].Id"></i></a>
-                            <a href="#" title="Yorumu Sil">
-                                <i class="fas fa-fw fa-trash delete-review" id="delete-review-@Model[i].Id" data-target="#deleteReviewModal" data-toggle="modal"></i>
+                        <td id="restaurant-name-@Model.MyReviews[i].Id"><a href="/restaurant/detail/@Model.MyReviews[i].Restaurant.Id">@Model.MyReviews[i].Restaurant.Name</a></td>
+                        <td>@Model.MyReviews[i].AddedDate</td>
+                        <td>@Model.MyReviews[i].Score</td>
+                        <td id="review-content-@Model.MyReviews[i].Id">@Model.MyReviews[i].Content</td>
+                        <td class="text-right">
+                            <a class="btn btn-danger btn-sm edit-review" id="edit-review-@Model.MyReviews[i].Id" href="#" title="Yorumu Düzenle">
+                                <i class="fas fa-fw fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm delete-review" id="delete-review-@Model.MyReviews[i].Id" href="#" title="Yorumu Sil">
+                                <i class="fas fa-fw fa-trash"></i>
                             </a>
                         </td>
                     </tr>
