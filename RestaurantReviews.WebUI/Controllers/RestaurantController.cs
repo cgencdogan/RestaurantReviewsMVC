@@ -17,10 +17,10 @@ namespace RestaurantReviews.WebUI.Controllers {
         public ActionResult Detail(int id) {
             var model = new RestaurantDetailVm();
             model.Restaurant = service.Uow.Restaurants.GetByIdIncludeDistrict(id);
-            model.RestaurantCategories = service.RestaurantManager.RestaurantCategories(service.Uow.RestaurantCategories, id);
-            model.RestaurantFeatures = service.RestaurantManager.RestaurantFeatures(service.Uow.RestaurantFeatures, id);
+            model.RestaurantCategories = service.Uow.RestaurantCategories.GetCategoriesByRestaurantId(id);
+            model.RestaurantFeatures = service.Uow.RestaurantFeatures.GetNamesByRestaurantId(id);
             model.Score = service.ReviewManager.CalculateScore(service.Uow.Reviews, id);
-            model.ReviewCount = service.ReviewManager.ReviewCount(service.Uow.Reviews, id);
+            model.ReviewCount = service.Uow.Reviews.GetCountByRestaurantId(id);
             return View(model);
         }
 

@@ -6,11 +6,9 @@ using System;
 
 namespace RestaurantReviews.BLL.Service {
     public class DataService {
-
         private AppDbContext context;
         private IUnitOfWork _unitOfWork;
         private ReviewManager _reviewManager;
-        public RestaurantManager _restaurantManager;
 
         public DataService() {
             context = new AppDbContext();
@@ -29,14 +27,6 @@ namespace RestaurantReviews.BLL.Service {
                 if (_reviewManager == null)
                     _reviewManager = new ReviewManager();
                 return _reviewManager;
-            }
-        }
-
-        public RestaurantManager RestaurantManager {
-            get {
-                if (_restaurantManager == null)
-                    _restaurantManager = new RestaurantManager();
-                return _restaurantManager;
             }
         }
 

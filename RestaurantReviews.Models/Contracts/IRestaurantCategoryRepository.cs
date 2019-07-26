@@ -9,6 +9,7 @@ namespace RestaurantReviews.Models.Contracts {
         void DeleteByCategoryId(int categoryId);
         int GetCountByCategoryId(int categoryId);
         List<int> GetByRestaurantId(int restaurantId);
+        List<Category> GetCategoriesByRestaurantId(int restaurantId);
         List<RestaurantCategory> GetIncludeCategories(Expression<Func<RestaurantCategory, bool>> predicate);
         List<RestaurantCategory> GetByRestaurantIdIncludeCategories(int restaurantId);
         List<RestaurantCategory> GetByCategoryId(int categoryId);

@@ -62,5 +62,16 @@ namespace RestaurantReviews.DAL.Repositories {
             return dbSet.Where(c => c.CategoryId == categoryId)
                 .Count();
         }
+
+        public List<Category> GetCategoriesByRestaurantId(int restaurantId) {
+            var restaurantCategories = GetByRestaurantIdIncludeCategories(restaurantId);
+            var categories = new List<Category>();
+
+            foreach (var item in restaurantCategories) {
+                categories.Add(item.Category);
+            }
+
+            return categories;
+        }
     }
 }

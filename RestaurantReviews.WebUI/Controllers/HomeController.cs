@@ -74,7 +74,7 @@ namespace RestaurantReviews.WebUI.Controllers {
                     PicturePath = restaurant.CoverImagePath,
                     District = restaurant.District,
                     Score = service.ReviewManager.CalculateScore(service.Uow.Reviews, restaurant.Id),
-                    ReviewCount = service.ReviewManager.ReviewCount(service.Uow.Reviews, restaurant.Id)
+                    ReviewCount = service.Uow.Reviews.GetCountByRestaurantId(restaurant.Id)
                 });
             }
 

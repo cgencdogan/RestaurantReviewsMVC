@@ -32,5 +32,15 @@ namespace RestaurantReviews.DAL.Repositories {
                 dbSet.Remove(entity);
             }
         }
+
+        public List<string> GetNamesByRestaurantId(int restaurantId) {
+            var restaurantFeatures = GetByRestaurantIdIncludeFeatures(restaurantId);
+            var featureNames = new List<string>();
+
+            foreach (var item in restaurantFeatures) {
+                featureNames.Add(item.Feature.Name);
+            }
+            return featureNames;
+        }
     }
 }
