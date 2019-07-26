@@ -19,7 +19,7 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
             return View(model);
         }
 
-        public ActionResult ReviewCountsByMonth() {
+        public ActionResult ReviewCountsAllMonths() {
             var countsString = service.Uow.Reviews.GetCountAllMonths();
             return Json(new { counts = countsString }, JsonRequestBehavior.AllowGet);
         }

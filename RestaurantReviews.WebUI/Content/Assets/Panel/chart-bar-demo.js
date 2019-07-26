@@ -30,7 +30,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 //Aylara göre yorum sayýlarýný çekme
 var reviewsCount = "";
 $.ajax({
-    url: "/admin/admin/ReviewCountsByMonth",
+    url: "/admin/admin/ReviewCountsAllMonths",
     method: "get",
     async: false,
     success: function (res) {
