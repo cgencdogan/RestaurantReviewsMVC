@@ -15,7 +15,6 @@ namespace RestaurantReviews.DAL.Repositories.UnitOfWork {
         private IRestaurantImageRepository _restaurantImages;
         private IRestaurantCategoryRepository _restaurantCategories;
         private IDistrictRepository _districts;
-        private IMembershipRepository _members;
         private IFeatureRepository _features;
         private IRestaurantFeatureRepository _restaurantFeatures;
         private UserStore<AppUser> _userStore;
@@ -80,15 +79,6 @@ namespace RestaurantReviews.DAL.Repositories.UnitOfWork {
                     _restaurantCategories = new RestaurantCategoryRepository(context);
 
                 return _restaurantCategories;
-            }
-        }
-
-        public IMembershipRepository Members {
-            get {
-                if (_members == null)
-                    _members = new MembershipRepository(context);
-
-                return _members;
             }
         }
 

@@ -83,11 +83,11 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
             IEnumerable<Restaurant> restaurants;
             int restaurantCount;
             if (searchWord != null) {
-                restaurants = service.Uow.Restaurants.GetAllIncludeDistrictsFilterBySearchWordTakeX(searchWord, pageNumber, PageUtil.PanelRestaurantShownCount);
+                restaurants = service.Uow.Restaurants.GetIncludeDistrictsFilterBySearchWordTakeX(searchWord, pageNumber, PageUtil.PanelRestaurantShownCount);
                 restaurantCount = service.Uow.Restaurants.GetCountBySearchWord(searchWord);
             }
             else {
-                restaurants = service.Uow.Restaurants.GetAllIncludeDistrictsTakeX(pageNumber, PageUtil.PanelRestaurantShownCount);
+                restaurants = service.Uow.Restaurants.GetIncludeDistrictsTakeX(pageNumber, PageUtil.PanelRestaurantShownCount);
                 restaurantCount = service.Uow.Restaurants.GetCount();
             }
             model.RestaurantList = new List<PanelRestaurantVm>();
@@ -114,11 +114,11 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
             IEnumerable<Restaurant> restaurants;
             int passiveRestaurantCount;
             if (searchWord != null) {
-                restaurants = service.Uow.Restaurants.GetAllPassivesIncludeDistrictsFilterBySearchWordTakeX(searchWord, pageNumber, PageUtil.PanelRestaurantShownCount);
+                restaurants = service.Uow.Restaurants.GetPassivesIncludeDistrictsFilterBySearchWordTakeX(searchWord, pageNumber, PageUtil.PanelRestaurantShownCount);
                 passiveRestaurantCount = service.Uow.Restaurants.GetPassiveCountBySearchWord(searchWord);
             }
             else {
-                restaurants = service.Uow.Restaurants.GetAllPassivesIncludeDistrictsTakeX(pageNumber, PageUtil.PanelRestaurantShownCount);
+                restaurants = service.Uow.Restaurants.GetPassivesIncludeDistrictsTakeX(pageNumber, PageUtil.PanelRestaurantShownCount);
                 passiveRestaurantCount = service.Uow.Restaurants.GetPassiveCount();
             }
 

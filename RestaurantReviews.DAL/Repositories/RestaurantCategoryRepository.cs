@@ -12,20 +12,28 @@ namespace RestaurantReviews.DAL.Repositories {
         }
 
         public List<RestaurantCategory> GetIncludeCategories(Expression<Func<RestaurantCategory, bool>> predicate) {
-            return dbSet.Include("Category").Where(predicate).ToList();
+            return dbSet.Include("Category")
+                .Where(predicate)
+                .ToList();
         }
         public List<RestaurantCategory> GetByCategoryId(int categoryId) {
-            return dbSet.Where(c => c.CategoryId == categoryId).ToList();
+            return dbSet.Where(c => c.CategoryId == categoryId)
+                .ToList();
         }
 
         public List<RestaurantCategory> GetByRestaurantIdIncludeCategories(int restaurantId) {
-            return dbSet.Include("Category").Where(c => c.RestaurantId == restaurantId).ToList();
+            return dbSet.Include("Category")
+                .Where(c => c.RestaurantId == restaurantId)
+                .ToList();
         }
 
         public List<int> GetByRestaurantId(int restaurantId) {
             var ids = new List<int>();
 
-            var categoryIds = dbSet.Where(c => c.RestaurantId == restaurantId).Select(x => new { x.CategoryId }).ToList();
+            var categoryIds = dbSet.Where(c => c.RestaurantId == restaurantId)
+                .Select(x => new { x.CategoryId })
+                .ToList();
+
             foreach (var item in categoryIds) {
                 ids.Add(item.CategoryId);
             }
@@ -33,21 +41,26 @@ namespace RestaurantReviews.DAL.Repositories {
         }
 
         public void DeleteByRestaurantId(int restaurantId) {
-            var entitiesToBeDeleted = dbSet.Where(x => x.RestaurantId == restaurantId).ToList();
+            var entitiesToBeDeleted = dbSet.Where(x => x.RestaurantId == restaurantId)
+                .ToList();
+
             foreach (var entity in entitiesToBeDeleted) {
                 dbSet.Remove(entity);
             }
         }
 
         public void DeleteByCategoryId(int categoryId) {
-            var entitiesToBeDeleted = dbSet.Where(x => x.CategoryId == categoryId).ToList();
+            var entitiesToBeDeleted = dbSet.Where(x => x.CategoryId == categoryId)
+                .ToList();
+
             foreach (var entity in entitiesToBeDeleted) {
                 dbSet.Remove(entity);
             }
         }
 
         public int GetCountByCategoryId(int categoryId) {
-            return dbSet.Where(c => c.CategoryId == categoryId).Count();
+            return dbSet.Where(c => c.CategoryId == categoryId)
+                .Count();
         }
     }
 }

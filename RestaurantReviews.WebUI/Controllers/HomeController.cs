@@ -65,7 +65,7 @@ namespace RestaurantReviews.WebUI.Controllers {
                 restaurantIds = restaurantIds.Intersect(restaurantIdsByCategory).ToList();
             }
             restaurantIdsForPage = restaurantIds.Skip(pageNumber * PageUtil.HomeRestaurantShownCount).Take(PageUtil.HomeRestaurantShownCount).ToList();
-            restaurants = service.Uow.Restaurants.GetAllByRestaurantIdsIncludeDistricts(restaurantIdsForPage).ToList();
+            restaurants = service.Uow.Restaurants.GetByRestaurantIdsIncludeDistricts(restaurantIdsForPage).ToList();
 
             foreach (var restaurant in restaurants) {
                 model.RestaurantListVm.Add(new RestaurantListVm {

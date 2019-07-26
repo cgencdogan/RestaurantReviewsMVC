@@ -21,7 +21,8 @@ namespace RestaurantReviews.DAL.Repositories {
         }
 
         public List<TEntity> Get(Expression<Func<TEntity, bool>> predicate) {
-            return dbSet.Where(predicate).ToList();
+            return dbSet.Where(predicate)
+                .ToList();
         }
 
         public TEntity GetById(object id) {

@@ -11,7 +11,6 @@ namespace RestaurantReviews.Models.Contracts {
         IRestaurantImageRepository RestaurantImages { get; }
         IRestaurantCategoryRepository RestaurantCategories { get; }
         IDistrictRepository Districts { get; }
-        IMembershipRepository Members { get; }
         IFeatureRepository Features { get; }
         IRestaurantFeatureRepository RestaurantFeatures { get; }
         UserStore<AppUser> UserStore { get; }

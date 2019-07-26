@@ -11,80 +11,123 @@ namespace RestaurantReviews.DAL.Repositories {
         public RestaurantRepository(AppDbContext context) : base(context) {
         }
 
-        public List<Restaurant> GetAllIncludeDistricts(Expression<Func<Restaurant, bool>> predicate) {
-            return dbSet.Include("District").Where(r => r.IsActive == true).Where(predicate).ToList();
+        public int GetCount() {
+            return dbSet.Where(r => r.IsActive)
+                .Count();
         }
 
-        public List<Restaurant> GetAllIncludeDistricts() {
-            return dbSet.Include("District").Where(r => r.IsActive == true).ToList();
+        public int GetPassiveCount() {
+            return dbSet.Where(r => !r.IsActive)
+                .Count();
         }
 
-        public List<Restaurant> GetAllPassivesIncludeDistricts() {
-            return dbSet.Include("District").Where(r => !r.IsActive).ToList();
+        public int GetCountBySearchWord(string searchWord) {
+            return dbSet.Where(r => r.IsActive && r.Name.Contains(searchWord))
+                .Count();
         }
 
-        public List<Restaurant> GetAllPassivesIncludeDistricts(Expression<Func<Restaurant, bool>> predicate) {
-            return dbSet.Include("District").Where(r => !r.IsActive).Where(predicate).ToList();
-        }
-
-        public List<Restaurant> GetAllIncludeDistrictsTakeX(int pageNumber, int shownAmount) {
-            return dbSet.Include("District").Where(r => r.IsActive).OrderBy(o => o.Id).Skip(pageNumber * shownAmount).Take(shownAmount).ToList();
-        }
-
-        public List<Restaurant> GetAllIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount) {
-            return dbSet.Include("District").Where(r => r.IsActive && r.Name.Contains(searchWord)).OrderBy(o => o.Id).Skip(pageNumber * shownAmount).Take(shownAmount).ToList();
-        }
-
-        public List<Restaurant> GetAllPassivesIncludeDistrictsTakeX(int pageNumber, int shownAmount) {
-            return dbSet.Include("District").Where(r => !r.IsActive).OrderBy(o => o.Id).Skip(pageNumber * shownAmount).Take(shownAmount).ToList(); ;
-        }
-
-        public List<Restaurant> GetAllPassivesIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount) {
-            return dbSet.Include("District").Where(r => !r.IsActive && r.Name.Contains(searchWord)).OrderBy(o => o.Id).Skip(pageNumber * shownAmount).Take(shownAmount).ToList();
-        }
-
-        public List<Restaurant> GetAllByRestaurantIdsIncludeDistricts(List<int> restaurantIds) {
-            return dbSet.Include("District").Where(r => restaurantIds.Contains(r.Id) && r.IsActive).ToList();
-        }
-
-        public List<Restaurant> GetBySearchWord(string searchWord) {
-            return dbSet.Where(r => r.Name.Contains(searchWord) && r.IsActive).ToList();
-        }
-
-        public List<Restaurant> GetAllByRestaurantIds(List<int> restaurantIds) {
-            return dbSet.Where(r => restaurantIds.Contains(r.Id) && r.IsActive).ToList();
-        }
-
-        public List<Restaurant> GetAllByRestaurantIdsTakeX(List<int> restaurantIds, int shownAmount) {
-            return dbSet.Where(r => restaurantIds.Contains(r.Id) && r.IsActive).OrderBy(o => o.Id).Take(shownAmount).ToList();
-        }
-
-        public Restaurant GetByIdIncludeDistrict(int id) {
-            return dbSet.Include("District").FirstOrDefault(x => x.Id == id);
-        }
-
-        public Restaurant GetByIdIncludeDetails(int id) {
-            return dbSet.Include("District").FirstOrDefault(x => x.Id == id);
+        public int GetPassiveCountBySearchWord(string searchWord) {
+            return dbSet.Where(r => !r.IsActive && r.Name.Contains(searchWord))
+                .Count();
         }
 
         public Restaurant GetByRestaurantKey(string restaurantKey) {
             return dbSet.FirstOrDefault(r => r.RestaurantKey == restaurantKey);
         }
 
-        public int GetCount() {
-            return dbSet.Where(r => r.IsActive).Count();
+        public Restaurant GetByIdIncludeDistrict(int id) {
+            return dbSet.Include("District")
+                .FirstOrDefault(x => x.Id == id);
         }
 
-        public int GetPassiveCount() {
-            return dbSet.Where(r => !r.IsActive).Count();
+        public Restaurant GetByIdIncludeDetails(int id) {
+            return dbSet.Include("District")
+                .FirstOrDefault(x => x.Id == id);
         }
 
-        public int GetCountBySearchWord(string searchWord) {
-            return dbSet.Where(r => r.IsActive && r.Name.Contains(searchWord)).Count();
+        public List<Restaurant> GetBySearchWord(string searchWord) {
+            return dbSet.Where(r => r.Name.Contains(searchWord) && r.IsActive)
+                .ToList();
         }
 
-        public int GetPassiveCountBySearchWord(string searchWord) {
-            return dbSet.Where(r => !r.IsActive && r.Name.Contains(searchWord)).Count();
+        public List<Restaurant> GetByRestaurantIds(List<int> restaurantIds) {
+            return dbSet.Where(r => restaurantIds.Contains(r.Id) && r.IsActive)
+                .ToList();
+        }
+
+        public List<Restaurant> GetByRestaurantIdsTakeX(List<int> restaurantIds, int shownAmount) {
+            return dbSet.Where(r => restaurantIds.Contains(r.Id) && r.IsActive)
+                .OrderBy(o => o.Id)
+                .Take(shownAmount)
+                .ToList();
+        }
+
+        public List<Restaurant> GetIncludeDistricts() {
+            return dbSet.Include("District")
+                .Where(r => r.IsActive == true)
+                .ToList();
+        }
+
+        public List<Restaurant> GetIncludeDistricts(Expression<Func<Restaurant, bool>> predicate) {
+            return dbSet.Include("District")
+                .Where(r => r.IsActive == true)
+                .Where(predicate)
+                .ToList();
+        }
+
+        public List<Restaurant> GetIncludeDistrictsTakeX(int pageNumber, int shownAmount) {
+            return dbSet.Include("District")
+                .Where(r => r.IsActive)
+                .OrderBy(o => o.Id)
+                .Skip(pageNumber * shownAmount)
+                .Take(shownAmount)
+                .ToList();
+        }
+
+        public List<Restaurant> GetIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount) {
+            return dbSet.Include("District")
+                .Where(r => r.IsActive && r.Name.Contains(searchWord))
+                .OrderBy(o => o.Id)
+                .Skip(pageNumber * shownAmount)
+                .Take(shownAmount)
+                .ToList();
+        }
+
+        public List<Restaurant> GetByRestaurantIdsIncludeDistricts(List<int> restaurantIds) {
+            return dbSet.Include("District")
+                .Where(r => restaurantIds.Contains(r.Id) && r.IsActive)
+                .ToList();
+        }
+
+        public List<Restaurant> GetPassivesIncludeDistricts() {
+            return dbSet.Include("District")
+                .Where(r => !r.IsActive)
+                .ToList();
+        }
+
+        public List<Restaurant> GetPassivesIncludeDistricts(Expression<Func<Restaurant, bool>> predicate) {
+            return dbSet.Include("District")
+                .Where(r => !r.IsActive)
+                .Where(predicate)
+                .ToList();
+        }
+
+        public List<Restaurant> GetPassivesIncludeDistrictsTakeX(int pageNumber, int shownAmount) {
+            return dbSet.Include("District")
+                .Where(r => !r.IsActive)
+                .OrderBy(o => o.Id)
+                .Skip(pageNumber * shownAmount)
+                .Take(shownAmount)
+                .ToList(); ;
+        }
+
+        public List<Restaurant> GetPassivesIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount) {
+            return dbSet.Include("District")
+                .Where(r => !r.IsActive && r.Name.Contains(searchWord))
+                .OrderBy(o => o.Id)
+                .Skip(pageNumber * shownAmount)
+                .Take(shownAmount)
+                .ToList();
         }
     }
 }

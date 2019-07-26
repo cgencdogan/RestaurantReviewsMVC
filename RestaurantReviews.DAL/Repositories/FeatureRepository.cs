@@ -10,11 +10,13 @@ namespace RestaurantReviews.DAL.Repositories {
         }
 
         public List<Feature> GetActives() {
-            return dbSet.Where(f => f.IsActive).ToList();
+            return dbSet.Where(f => f.IsActive)
+                .ToList();
         }
 
         public List<Feature> GetBySearchWord(string searchWord) {
-            return dbSet.Where(f => f.Name.Contains(searchWord)).ToList();
+            return dbSet.Where(f => f.Name.Contains(searchWord))
+                .ToList();
         }
     }
 }

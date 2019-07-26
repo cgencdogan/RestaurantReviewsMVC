@@ -5,24 +5,24 @@ using System.Linq.Expressions;
 
 namespace RestaurantReviews.Models.Contracts {
     public interface IRestaurantRepository : IBaseRepository<Restaurant> {
-        List<Restaurant> GetAllIncludeDistricts(Expression<Func<Restaurant, bool>> predicate);
-        List<Restaurant> GetAllIncludeDistricts();
-        Restaurant GetByIdIncludeDistrict(int id);
-        Restaurant GetByRestaurantKey(string restaurantKey);
-        List<Restaurant> GetAllPassivesIncludeDistricts(Expression<Func<Restaurant, bool>> predicate);
-        List<Restaurant> GetAllPassivesIncludeDistricts();
-        Restaurant GetByIdIncludeDetails(int id);
         int GetCount();
-        List<Restaurant> GetAllIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount);
-        int GetCountBySearchWord(string searchWord);
-        List<Restaurant> GetAllIncludeDistrictsTakeX(int pageNumber, int shownAmount);
-        List<Restaurant> GetAllPassivesIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount);
-        int GetPassiveCountBySearchWord(string searchWord);
-        List<Restaurant> GetAllPassivesIncludeDistrictsTakeX(int pageNumber, int shownAmount);
         int GetPassiveCount();
-        List<Restaurant> GetAllByRestaurantIdsIncludeDistricts(List<int> restaurantIds);
+        int GetCountBySearchWord(string searchWord);
+        int GetPassiveCountBySearchWord(string searchWord);
+        Restaurant GetByRestaurantKey(string restaurantKey);
+        Restaurant GetByIdIncludeDistrict(int id);
+        Restaurant GetByIdIncludeDetails(int id);
         List<Restaurant> GetBySearchWord(string searchWord);
-        List<Restaurant> GetAllByRestaurantIds(List<int> restaurantIds);
-        List<Restaurant> GetAllByRestaurantIdsTakeX(List<int> restaurantIds, int shownAmount);
+        List<Restaurant> GetByRestaurantIds(List<int> restaurantIds);
+        List<Restaurant> GetByRestaurantIdsTakeX(List<int> restaurantIds, int shownAmount);
+        List<Restaurant> GetIncludeDistricts();
+        List<Restaurant> GetIncludeDistricts(Expression<Func<Restaurant, bool>> predicate);
+        List<Restaurant> GetIncludeDistrictsTakeX(int pageNumber, int shownAmount);
+        List<Restaurant> GetIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount);
+        List<Restaurant> GetByRestaurantIdsIncludeDistricts(List<int> restaurantIds);
+        List<Restaurant> GetPassivesIncludeDistricts();
+        List<Restaurant> GetPassivesIncludeDistricts(Expression<Func<Restaurant, bool>> predicate);
+        List<Restaurant> GetPassivesIncludeDistrictsTakeX(int pageNumber, int shownAmount);
+        List<Restaurant> GetPassivesIncludeDistrictsFilterBySearchWordTakeX(string searchWord, int pageNumber, int shownAmount);
     }
 }

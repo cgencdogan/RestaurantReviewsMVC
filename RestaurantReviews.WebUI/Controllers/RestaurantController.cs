@@ -73,7 +73,7 @@ namespace RestaurantReviews.WebUI.Controllers {
                 restaurantIds.Add(item.GetType().GetProperty("ID").GetValue(item));
             }
             restaurantIds.Remove(restaurantId);
-            var restaurantsInSameDistrict = service.Uow.Restaurants.GetAllByRestaurantIds(restaurantIds);
+            var restaurantsInSameDistrict = service.Uow.Restaurants.GetByRestaurantIds(restaurantIds);
             model.RestaurantsInSameDistrict = new List<RestaurantListVm>();
 
             foreach (var item in restaurantsInSameDistrict) {
@@ -103,7 +103,7 @@ namespace RestaurantReviews.WebUI.Controllers {
                 }
 
                 restaurantIds.Remove(restaurantId);
-                var restaurants = service.Uow.Restaurants.GetAllByRestaurantIdsTakeX(restaurantIds, PageUtil.SuggestionRestaurantShownCount);
+                var restaurants = service.Uow.Restaurants.GetByRestaurantIdsTakeX(restaurantIds, PageUtil.SuggestionRestaurantShownCount);
 
                 var restaurantsInSameCategory = new List<RestaurantListVm>();
                 foreach (var item in restaurants) {
@@ -118,7 +118,7 @@ namespace RestaurantReviews.WebUI.Controllers {
             }
 
             model.District = restaurant.District;
-            model.Categories = service.Uow.Categories.GetAllByCategoryIds(categoryIds);
+            model.Categories = service.Uow.Categories.GetByCategoryIds(categoryIds);
             return PartialView(model);
         }
     }

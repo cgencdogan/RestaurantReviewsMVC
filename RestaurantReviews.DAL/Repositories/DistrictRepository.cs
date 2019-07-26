@@ -9,7 +9,9 @@ namespace RestaurantReviews.DAL.Repositories {
         }
         public int GetIdBySearchWord(string searchWord) {
             if (dbSet.Any(d => d.Name.Contains(searchWord))) {
-                return dbSet.Where(d => d.Name.Contains(searchWord)).FirstOrDefault().Id;
+                return dbSet.Where(d => d.Name.Contains(searchWord))
+                    .FirstOrDefault()
+                    .Id;
             }
             else {
                 return 0;

@@ -25,15 +25,15 @@ namespace RestaurantReviews.DAL.Repositories {
             return dbSet.Include("Restaurant").Where(predicate).ToList();
         }
 
-        public List<Review> GetAllIncludeUser(Expression<Func<Review, bool>> predicate) {
+        public List<Review> GetIncludeUser(Expression<Func<Review, bool>> predicate) {
             return dbSet.Include("AppUser").Where(predicate).ToList();
         }
 
-        public List<Review> GetAllConfirmedIncludeUserTakeX(int pageNumber, int shownAmount) {
+        public List<Review> GetConfirmedIncludeUserTakeX(int pageNumber, int shownAmount) {
             return dbSet.Include("AppUser").Where(r => r.IsActive && r.isConfirmed && r.Score != null).OrderBy(o => o.Id).Skip(pageNumber * shownAmount).Take(shownAmount).ToList();
         }
 
-        public List<Review> GetAllUnconfirmedIncludeUserTakeX(int pageNumber, int shownAmount) {
+        public List<Review> GetUnconfirmedIncludeUserTakeX(int pageNumber, int shownAmount) {
             return dbSet.Include("AppUser").Where(r => r.IsActive && !r.isConfirmed && r.Score != null).OrderBy(o => o.Id).Skip(pageNumber * shownAmount).Take(shownAmount).ToList();
         }
 

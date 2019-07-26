@@ -5,12 +5,12 @@ using System.Linq.Expressions;
 
 namespace RestaurantReviews.Models.Contracts {
     public interface IRestaurantCategoryRepository : IBaseRepository<RestaurantCategory> {
-        List<RestaurantCategory> GetIncludeCategories(Expression<Func<RestaurantCategory, bool>> predicate);
         void DeleteByRestaurantId(int restaurantId);
+        void DeleteByCategoryId(int categoryId);
+        int GetCountByCategoryId(int categoryId);
         List<int> GetByRestaurantId(int restaurantId);
+        List<RestaurantCategory> GetIncludeCategories(Expression<Func<RestaurantCategory, bool>> predicate);
         List<RestaurantCategory> GetByRestaurantIdIncludeCategories(int restaurantId);
         List<RestaurantCategory> GetByCategoryId(int categoryId);
-        int GetCountByCategoryId(int categoryId);
-        void DeleteByCategoryId(int categoryId);
     }
 }

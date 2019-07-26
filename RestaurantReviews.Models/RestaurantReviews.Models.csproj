@@ -82,7 +82,6 @@
     <Compile Include="Contracts\ICategoryRepository.cs" />
     <Compile Include="Contracts\IDistrictRepository.cs" />
     <Compile Include="Contracts\IFeatureRepository.cs" />
-    <Compile Include="Contracts\IMembershipRepository.cs" />
     <Compile Include="Contracts\IRestaurantCategoryRepository.cs" />
     <Compile Include="Contracts\IRestaurantFeatureRepository.cs" />
     <Compile Include="Contracts\IRestaurantImageRepository.cs" />

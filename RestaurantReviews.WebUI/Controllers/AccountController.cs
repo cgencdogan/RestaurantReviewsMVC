@@ -5,7 +5,6 @@ using RestaurantReviews.Models.Entities.Identity;
 using RestaurantReviews.WebUI.Managers;
 using RestaurantReviews.WebUI.Models;
 using System;
-using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 

@@ -20,12 +20,12 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
             var model = new PanelReviewListVm();
             if (confirmed == true) {
                 reviewCount = service.Uow.Reviews.GetConfirmedCount();
-                reviews = service.Uow.Reviews.GetAllConfirmedIncludeUserTakeX(pageNumber, PageUtil.PanelReviewShownCount);
+                reviews = service.Uow.Reviews.GetConfirmedIncludeUserTakeX(pageNumber, PageUtil.PanelReviewShownCount);
                 model.Confirmed = true;
             }
             else {
                 reviewCount = service.Uow.Reviews.GetUnconfirmedCount();
-                reviews = service.Uow.Reviews.GetAllUnconfirmedIncludeUserTakeX(pageNumber, PageUtil.PanelReviewShownCount);
+                reviews = service.Uow.Reviews.GetUnconfirmedIncludeUserTakeX(pageNumber, PageUtil.PanelReviewShownCount);
                 model.Confirmed = false;
             }
             model.PanelReviews = new List<PanelReviewVm>();

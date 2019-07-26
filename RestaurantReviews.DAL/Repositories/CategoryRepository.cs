@@ -10,15 +10,18 @@ namespace RestaurantReviews.DAL.Repositories {
         }
         public int GetIdBySearchWord(string searchWord) {
             if (dbSet.Any(c => c.Name.Contains(searchWord))) {
-                return dbSet.Where(c => c.Name.Contains(searchWord)).FirstOrDefault().Id;
+                return dbSet.Where(c => c.Name.Contains(searchWord))
+                    .FirstOrDefault()
+                    .Id;
             }
             else {
                 return 0;
             }
         }
 
-        public List<Category> GetAllByCategoryIds(List<int> categoryIds) {
-            return dbSet.Where(c => categoryIds.Contains(c.Id) && c.IsActive).ToList();
+        public List<Category> GetByCategoryIds(List<int> categoryIds) {
+            return dbSet.Where(c => categoryIds.Contains(c.Id) && c.IsActive)
+                .ToList();
         }
     }
 }
