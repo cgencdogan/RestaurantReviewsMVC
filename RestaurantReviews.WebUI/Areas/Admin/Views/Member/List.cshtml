@@ -14,7 +14,7 @@
     </div>
     <div class="card-body">
         <div class="input-group col-md-5">
-            <input type="text" id="username-searchkey" value="@Model.SearchWord" class="form-control bg-light border-0 small" placeholder="Kullanıcı adına göre ara..." aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" id="username-searchkey" value="@Model.SearchWord" class="form-control bg-light" placeholder="Kullanıcı adına göre ara..." aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" id="btn-searchby-username">
                     Ara <i class="fas fa-search fa-sm"></i>
@@ -28,7 +28,9 @@
                     <th>#</th>
                     <th>Kullanıcı Adı</th>
                     <th>E-mail</th>
-                    <th>Toplam Yorum</th>
+                    @if (Model.IsConfirmed) {
+                        <th>Toplam Yorum</th>
+                    }
                     <th class="text-right">İşlem</th>
                 </tr>
             </thead>
@@ -38,14 +40,26 @@
                         <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
                         <td><a href="#"><span id="username-@Model.MemberList[i].AppUserId">@Model.MemberList[i].Username</span></a></td>
                         <td>@Model.MemberList[i].Email</td>
-                        <td>@Model.MemberList[i].ReviewCount</td>
+                        @if (Model.IsConfirmed) {
+                            <td>@Model.MemberList[i].ReviewCount</td>
+                        }
                         <td class="text-right">
-                            <a class="btn btn-danger btn-sm user-change-password" userid="@Model.MemberList[i].AppUserId" href="#" title="Şifre Değiştir">
-                            <i class="fas fa-fw fa-key"></i>
-                            </a>
-                            <a class="btn btn-danger btn-sm deactivate-user" userid="@Model.MemberList[i].AppUserId" href="#" title="Kullanıcıyı Pasife Al">
-                                <i class="fas fa-fw fa-lock"></i>
-                            </a>
+                            @if (!Model.IsConfirmed) {
+                                <a class="btn btn-danger btn-sm user-confirm-email" userid="@Model.MemberList[i].AppUserId" href="#" title="E-mail Onayla">
+                                    <i class="fas fa-fw fa-check"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm perm-delete-user" userId="@Model.MemberList[i].AppUserId" href="#" title="Kalıcı Olarak Sil">
+                                    <i class="fas fa-fw fa-trash"></i>
+                                </a>
+                            }
+                            else {
+                                <a class="btn btn-danger btn-sm user-change-password" userid="@Model.MemberList[i].AppUserId" href="#" title="Şifre Değiştir">
+                                    <i class="fas fa-fw fa-key"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm deactivate-user" userid="@Model.MemberList[i].AppUserId" href="#" title="Kullanıcıyı Pasife Al">
+                                    <i class="fas fa-fw fa-lock"></i>
+                                </a>
+                            }
                         </td>
                     </tr>
                 }

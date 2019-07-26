@@ -19,6 +19,27 @@ $(document).on("click", ".member-list-pagination", function () {
     }
 });
 
+//PassiveList Sayfalandırma
+$(document).on("click", ".passive-member-list-pagination", function () {
+    var maxPage = $("#max-page").val();
+    var searchWord = $("#username-searchkey").val();
+    var urlParams = new URLSearchParams(window.location.search);
+    var pageNumber = urlParams.get("pageNumber");
+    if ($(this).attr("id") == "prev-page" && pageNumber > 0) {
+        pageNumber--;
+    }
+    else if ($(this).attr("id") == "next-page" && pageNumber < maxPage - 1) {
+        pageNumber++;
+    }
+    if (searchWord != "") {
+        window.location.href = "/yonetim-paneli/pasif-kullanici-listesi?searchWord=" + searchWord + "&pageNumber=" + pageNumber;
+    }
+    else {
+        window.location.href = "/yonetim-paneli/pasif-kullanici-listesi?pageNumber=" + pageNumber;
+    }
+});
+
+//Sayfalandırma linklerini deaktif-aktif etme
 $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     var pageNumber = urlParams.get("pageNumber");
@@ -171,7 +192,7 @@ $(".perm-delete-user").click(function () {
     var userName = $("#username-" + id).text();
     Swal.fire({
         title: 'Kullanıcı Silinecek',
-        text: userName + " adlı kullanıcı kalıcı olarak silinecektir. Kullanıcının yaptığı yorumlar ve yüklediği görseller de silinecek. Emin misiniz?",
+        html: "<b>" + userName + "</b> adlı kullanıcı kalıcı olarak silinecektir. Kullanıcının yaptığı yorumlar ve yüklediği görseller de silinecek. Emin misiniz?",
         type: 'error',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -201,10 +222,54 @@ $(".perm-delete-user").click(function () {
     })
 });
 
+//Kullanıcı Mail Onayla
+$(".user-confirm-email").click(function () {
+    var id = $(this).attr("userId");
+    var userName = $("#username-" + id).text();
+    Swal.fire({
+        title: 'E-mail Aktifleştirilecek',
+        text: userName + " adlı kullanıcının e-mail adresi onaylanacak. Emin misiniz?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Evet',
+        cancelButtonText: 'Hayır'
+    }).then((result) => {
+        if (result.value) {
+            var data = {
+                id: id
+            };
+            $.ajax({
+                url: "/admin/member/confirmemail",
+                method: "post",
+                data: data,
+                success: function (res) {
+                    Swal.fire(
+                        'E-mail Onaylandı',
+                        userName + ' adlı kullanıcının e-mail adresi onaylandı.',
+                        'success'
+                    ).then((res) => {
+                        window.location.reload(true);
+                    })
+                }
+            });
+        }
+    })
+});
+
 //Kullanıcı adına göre ara
 $("#btn-searchby-username").click(function () {
     var searchWord = $("#username-searchkey").val();
     if (searchWord != "") {
         window.location.href = "/yonetim-paneli/kullanici-listesi?searchWord=" + searchWord;
+    }
+});
+
+//Pasif kullanıcı listesinde kullanıcı adına göre ara
+$("#btn-searchby-passive-username").click(function () {
+    var searchWord = $("#username-searchkey").val();
+    if (searchWord != "") {
+        window.location.href = "/yonetim-paneli/pasif-kullanici-listesi?searchWord=" + searchWord;
     }
 });

@@ -40,11 +40,10 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
                 }
             }
             model.SearchWord = searchWord;
-            var maxPage = Math.Ceiling(memberCount / Convert.ToDouble(PageUtil.PanelMemberShownCount));
-            model.ShownCount = PageUtil.PanelMemberShownCount;
             model.PageNumber = pageNumber;
-            model.MaxPage = maxPage;
             model.IsConfirmed = confirmed;
+            model.ShownCount = PageUtil.PanelMemberShownCount;
+            model.MaxPage = Math.Ceiling(memberCount / Convert.ToDouble(PageUtil.PanelMemberShownCount));
             return View(model);
         }
 
@@ -53,13 +52,19 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
             var model = new PanelMemberListVm();
             model.MemberList = new List<PanelMemberVm>();
 
-            memberCount = service.Uow.Users.Users.Where(u => !u.IsActive).Count();
+            if (string.IsNullOrWhiteSpace(searchWord)) {
+                memberCount = service.Uow.Users.Users.Where(u => !u.IsActive).Count();
+            }
+            else {
+                memberCount = service.Uow.Users.Users.Where(u => !u.IsActive && u.UserName.Contains(searchWord)).Count();
+            }
+
             model.MemberList = GetUserList(true, false, searchWord, pageNumber);
 
-            var maxPage = Math.Ceiling(memberCount / Convert.ToDouble(PageUtil.PanelMemberShownCount));
-            model.ShownCount = PageUtil.PanelMemberShownCount;
+            model.SearchWord = searchWord;
             model.PageNumber = pageNumber;
-            model.MaxPage = maxPage;
+            model.ShownCount = PageUtil.PanelMemberShownCount;
+            model.MaxPage = Math.Ceiling(memberCount / Convert.ToDouble(PageUtil.PanelMemberShownCount));
             return View(model);
         }
 
@@ -96,41 +101,33 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
             return RedirectToAction("PassiveList");
         }
 
+        [HttpPost]
+        public ActionResult ConfirmEmail(string id) {
+            var appUser = service.Uow.Users.FindById(id);
+            appUser.EmailConfirmed = true;
+            service.Uow.Users.Update(appUser);
+            service.Uow.Save();
+            return RedirectToAction("PassiveList");
+        }
+
         public List<PanelMemberVm> GetUserList(bool isEmailConfirmed, bool isActive, string searchWord, int pageNumber) {
             var memberList = new List<PanelMemberVm>();
             var members = new List<PanelMemberVm>();
-            if (isActive == true) {
-                if (searchWord != null) {
-                    members = service.Uow.Users.Users.Where(u => u.EmailConfirmed == isEmailConfirmed && u.IsActive == isActive && u.UserName.Contains(searchWord)).ToList().Skip(pageNumber * PageUtil.PanelMemberShownCount).Take(PageUtil.PanelMemberShownCount).Select(item => new PanelMemberVm {
-                        AppUserId = item.Id,
-                        Username = item.UserName,
-                        Email = item.Email
-                    }).ToList();
-                }
-                else {
-                    members = service.Uow.Users.Users.Where(u => u.EmailConfirmed == isEmailConfirmed && u.IsActive == isActive).ToList().Skip(pageNumber * PageUtil.PanelMemberShownCount).Take(PageUtil.PanelMemberShownCount).Select(item => new PanelMemberVm {
-                        AppUserId = item.Id,
-                        Username = item.UserName,
-                        Email = item.Email
-                    }).ToList();
-                }
+            if (searchWord != null) {
+                members = service.Uow.Users.Users.Where(u => u.EmailConfirmed == isEmailConfirmed && u.IsActive == isActive && u.UserName.Contains(searchWord)).OrderBy(o => o.UserName).Skip(pageNumber * PageUtil.PanelMemberShownCount).Take(PageUtil.PanelMemberShownCount).Select(item => new PanelMemberVm {
+                    AppUserId = item.Id,
+                    Username = item.UserName,
+                    Email = item.Email
+                }).ToList();
             }
             else {
-                if (searchWord != null) {
-                    members = service.Uow.Users.Users.Where(u => u.IsActive == isActive && u.UserName.Contains(searchWord)).ToList().Skip(pageNumber * PageUtil.PanelMemberShownCount).Take(PageUtil.PanelMemberShownCount).Select(item => new PanelMemberVm {
-                        AppUserId = item.Id,
-                        Username = item.UserName,
-                        Email = item.Email
-                    }).ToList();
-                }
-                else {
-                    members = service.Uow.Users.Users.Where(u => u.IsActive == isActive).ToList().Skip(pageNumber * PageUtil.PanelMemberShownCount).Take(PageUtil.PanelMemberShownCount).Select(item => new PanelMemberVm {
-                        AppUserId = item.Id,
-                        Username = item.UserName,
-                        Email = item.Email
-                    }).ToList();
-                }
+                members = service.Uow.Users.Users.Where(u => u.EmailConfirmed == isEmailConfirmed && u.IsActive == isActive).OrderBy(o => o.UserName).Skip(pageNumber * PageUtil.PanelMemberShownCount).Take(PageUtil.PanelMemberShownCount).Select(item => new PanelMemberVm {
+                    AppUserId = item.Id,
+                    Username = item.UserName,
+                    Email = item.Email
+                }).ToList();
             }
+
             foreach (var item in members) {
                 var panelMember = new PanelMemberVm();
                 panelMember.AppUserId = item.AppUserId;
