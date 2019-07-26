@@ -144,6 +144,8 @@
     <Content Include="Areas\Member\Scripts\Review\ReviewList.js" />
     <Content Include="Content\Assets\bootstrap.css" />
     <Content Include="Content\Assets\font-awesome.css" />
+    <Content Include="Content\Assets\Panel\chart-bar-demo.js" />
+    <Content Include="Content\Assets\Panel\Chart.min.js" />
     <Content Include="Content\Assets\sweetalert2.all.js" />
     <Content Include="Content\Assets\Panel\sweetalert2-panel.css" />
     <Content Include="Content\Assets\sweetalert2.css" />

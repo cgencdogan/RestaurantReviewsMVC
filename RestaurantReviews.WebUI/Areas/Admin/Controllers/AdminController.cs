@@ -18,5 +18,10 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
             model.UserCount = service.Uow.Users.Users.Where(u => u.EmailConfirmed == true && u.IsActive).Count();
             return View(model);
         }
+
+        public ActionResult ReviewCountsByMonth() {
+            var countsString = service.Uow.Reviews.GetCountAllMonths();
+            return Json(new { counts = countsString }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

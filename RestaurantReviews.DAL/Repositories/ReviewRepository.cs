@@ -88,5 +88,13 @@ namespace RestaurantReviews.DAL.Repositories {
                 dbSet.Remove(entity);
             }
         }
+
+        public string GetCountAllMonths() {
+            var x = "";
+            for (int i = 1; i <= 12; i++) {
+                x+= dbSet.Where(r => r.AddedDate.Month == i&& r.AddedDate.Year==DateTime.Now.Year && r.Score!=null && r.IsActive).Count() +",";
+            }
+            return x;
+        }
     }
 }

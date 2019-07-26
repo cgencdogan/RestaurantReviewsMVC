@@ -62,6 +62,24 @@
     </div>
 </div>
 
+<!--Aylara Göre Yorum Sayısı Grafik-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">@DateTime.Now.Year Yılının Aylara Göre Yorum Sayısı Grafiği</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-bar">
+                    <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <canvas id="myBarChart" width="612" height="320" class="chartjs-render-monitor" style="display: block; width: 612px; height: 320px;"></canvas>
+                </div>
+                <hr>
+                <span>İstediğiniz sütunun üzerine gelerek yorum sayısını görebilirsiniz.</span>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--İŞLEMLER-->
 <div class="row">
@@ -124,3 +142,7 @@
         </div>
     </div>
 </div>
+
+
+<script src="~/Content/Assets/Panel/Chart.min.js"></script>
+<script src="~/Content/Assets/Panel/chart-bar-demo.js"></script>

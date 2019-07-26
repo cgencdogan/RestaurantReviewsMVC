@@ -20,5 +20,6 @@ namespace RestaurantReviews.Models.Contracts {
         List<Review> GetUnconfirmedIncludeUserTakeX(int pageNumber, int shownAmount);
         List<Review> GetByUserIdIncludeRestaurantTakeX(string userId, int pageNumber, int shownAmount);
         List<Review> GetByRestaurantIdIncludeUserTakeX(int restaurantId, int pageNumber, int shownAmount);
+        string GetCountAllMonths();
     }
 }
