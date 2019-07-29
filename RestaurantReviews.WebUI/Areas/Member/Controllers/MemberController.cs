@@ -92,5 +92,40 @@ namespace RestaurantReviews.WebUI.Areas.Member.Controllers {
             service.Uow.Save();
             return RedirectToAction("Details");
         }
+
+        public ActionResult PublicProfile(string username) {
+            var model = new PublicProfileVm();
+
+            var appUser = service.Uow.Users.FindByName(username);
+            var likedReview = service.Uow.Reviews.GetMostLikedRestaurantIdByUserId(appUser.Id);
+            if (likedReview != null) {
+                model.LikedRestaurantName = service.Uow.Restaurants.GetById(likedReview.RestaurantId).Name;
+                model.LikedRestaurantId = likedReview.RestaurantId;
+                model.LikedRestaurantScore = likedReview.Score;
+            }
+            else {
+                model.LikedRestaurantName = "Bu kullanıcı hiçbir restorana puan vermemiş.";
+                model.LikedRestaurantId = 0;
+                model.LikedRestaurantScore = 0;
+            }
+            var dislikedReview = service.Uow.Reviews.GetMostDislikedRestaurantIdByUserId(appUser.Id);
+            if (dislikedReview != null) {
+                model.DislikedRestaurantName = service.Uow.Restaurants.GetById(dislikedReview.RestaurantId).Name;
+                model.DislikedRestaurantId = dislikedReview.RestaurantId;
+                model.DislikedRestaurantScore = dislikedReview.Score;
+            }
+            else {
+                model.DislikedRestaurantName = "Bu kullanıcı hiçbir restorana puan vermemiş.";
+                model.DislikedRestaurantId = 0;
+                model.DislikedRestaurantScore = 0;
+            }
+            var reviewCount = service.Uow.Reviews.GetCountByUserId(appUser.Id);
+
+            model.AppUserId = appUser.Id;
+            model.Username = appUser.UserName;
+            model.ProfilePicPath = appUser.ProfilePicPath;
+            model.ReviewCount = reviewCount;
+            return View(model);
+        }
     }
 }

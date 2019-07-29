@@ -9,8 +9,11 @@
                     <div class="row">
                         @if (i < @Model.RestaurantsInSameDistrict.Count()) {
                             <div class="col-md-6">
-                                <img class="img-responsive" src="@Model.RestaurantsInSameDistrict[i].PicturePath" />
-                                <a href="/restoran-detay?id=@Model.RestaurantsInSameDistrict[i].Id"><span>@Model.RestaurantsInSameDistrict[i].Name</span></a><br />
+                                <a href="/restoran-detay?id=@Model.RestaurantsInSameDistrict[i].Id">
+                                    <img class="img-responsive" src="@Model.RestaurantsInSameDistrict[i].PicturePath" />
+                                    <span>@Model.RestaurantsInSameDistrict[i].Name</span>
+                                </a>
+                                <br />
                                 @if (@Model.RestaurantsInSameDistrict[i].Score == null) {
                                     <span>Puan Yok</span>
                                 }
@@ -21,8 +24,11 @@
                         }
                         @if (i + 1 < @Model.RestaurantsInSameDistrict.Count()) {
                             <div class="col-md-6">
-                                <img class="img-responsive" src="@Model.RestaurantsInSameDistrict[i+1].PicturePath" />
-                                <a href="/restoran-detay?id=@Model.RestaurantsInSameDistrict[i+1].Id"><span>@Model.RestaurantsInSameDistrict[i + 1].Name</span></a><br />
+                                <a href="/restoran-detay?id=@Model.RestaurantsInSameDistrict[i+1].Id">
+                                    <img class="img-responsive" src="@Model.RestaurantsInSameDistrict[i+1].PicturePath" />
+                                    <span>@Model.RestaurantsInSameDistrict[i + 1].Name</span>
+                                </a>
+                                <br />
                                 @if (@Model.RestaurantsInSameDistrict[i + 1].Score == null) {
                                     <span>Puan Yok</span>
                                 }
@@ -50,8 +56,11 @@
                             <div class="row">
                                 @if (i < @restaurantList.Count()) {
                                     <div class="col-md-6">
-                                        <img class="img-responsive" src="@restaurantList[i].PicturePath" />
-                                        <a href="/restoran-detay?id=@restaurantList[i].Id"><span>@restaurantList[i].Name</span></a><br />
+                                        <a href="/restoran-detay?id=@restaurantList[i].Id">
+                                            <img class="img-responsive" src="@restaurantList[i].PicturePath" />
+                                            <span>@restaurantList[i].Name</span>
+                                        </a>
+                                        <br />
                                         @if (@restaurantList[i].Score == null) {
                                             <span>Puan Yok</span>
                                         }
@@ -62,8 +71,11 @@
                                 }
                                 @if (i + 1 < @restaurantList.Count()) {
                                     <div class="col-md-6">
-                                        <img class="img-responsive" src="@restaurantList[i+1].PicturePath" />
-                                        <a href="/restoran-detay?id=@restaurantList[i+1].Id"><span>@restaurantList[i + 1].Name</span></a><br />
+                                        <a href="/restoran-detay?id=@restaurantList[i+1].Id">
+                                            <img class="img-responsive" src="@restaurantList[i+1].PicturePath" />
+                                            <span>@restaurantList[i + 1].Name</span>
+                                        </a>
+                                        <br />
                                         @if (@restaurantList[i + 1].Score == null) {
                                             <span>Puan Yok</span>
                                         }

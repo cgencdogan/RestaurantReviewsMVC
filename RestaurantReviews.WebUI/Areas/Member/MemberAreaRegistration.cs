@@ -45,6 +45,12 @@ namespace RestaurantReviews.WebUI.Areas.Member
             );
 
             context.MapRoute(
+                "MemberMemberPublicProfile",
+                "kullanici",
+                new { controller = "Member", action = "PublicProfile", id = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
                 "Member_default",
                 "Member/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }

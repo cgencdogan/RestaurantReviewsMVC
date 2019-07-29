@@ -32,7 +32,7 @@
                 @for (int i = 0; i < Model.MemberList.Count(); i++) {
                     <tr>
                         <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
-                        <td><a href="#"><span id="username-@Model.MemberList[i].AppUserId">@Model.MemberList[i].Username</span></a></td>
+                        <td><a href="/kullanici?username=@Model.MemberList[i].Username"><span id="username-@Model.MemberList[i].AppUserId">@Model.MemberList[i].Username</span></a></td>
                         <td>@Model.MemberList[i].Email</td>
                         <td>@Model.MemberList[i].ReviewCount</td>
                         <td class="text-right">

@@ -34,16 +34,22 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
                 restaurant.PhoneNumber = data.PhoneNumber;
                 restaurant.DistrictId = data.DistrictId;
                 restaurant.AddedBy = User.Identity.GetUserId();
-                WebImage img = new WebImage(data.RestaurantImage.InputStream);
-                img.Resize(640, 360, false);
-                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfffffff");
-                img.FileName = fileName + "." + img.ImageFormat;
-                restaurant.CoverImagePath = "/Content/Images/CoverPics/" + img.FileName;
-                img.Save(Server.MapPath("/Content/Images/CoverPics/") + img.FileName);
+
                 service.Uow.Restaurants.Insert(restaurant);
                 service.Uow.Save();
 
                 int restaurantId = service.Uow.Restaurants.GetByRestaurantKey(restaurant.RestaurantKey).Id;
+
+                WebImage img = new WebImage(data.RestaurantImage.InputStream);
+                img.Resize(640, 360, false);
+                string fileName = restaurantId + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfffffff");
+                img.FileName = fileName + "." + img.ImageFormat;
+                restaurant.CoverImagePath = "/Content/Images/CoverPics/" + img.FileName;
+                img.Save(Server.MapPath("/Content/Images/CoverPics/") + img.FileName);
+
+                service.Uow.Restaurants.Update(restaurant);
+                service.Uow.Save();
+
                 if (data.FeatureIds != null) {
                     foreach (var featureId in data.FeatureIds) {
                         var restaurantFeature = new RestaurantFeature() {
@@ -183,7 +189,7 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
 
                 WebImage img = new WebImage(data.RestaurantImage.InputStream);
                 img.Resize(640, 360, false);
-                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfffffff");
+                string fileName = restaurant.Id + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfffffff");
                 img.FileName = fileName + "." + img.ImageFormat;
                 restaurant.CoverImagePath = "/Content/Images/CoverPics/" + img.FileName;
                 img.Save(Server.MapPath("/Content/Images/CoverPics/") + img.FileName);

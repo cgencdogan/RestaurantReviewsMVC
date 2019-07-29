@@ -176,6 +176,7 @@
     <Content Include="Scripts\Restaurant\RestaurantDetail.js" />
     <Content Include="Areas\Admin\Views\CategoryPanel\List.cshtml" />
     <Content Include="Areas\Admin\Views\FeaturePanel\List.cshtml" />
+    <Content Include="Areas\Member\Views\Member\PublicProfile.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -214,6 +215,7 @@
     <Compile Include="Areas\Member\Controllers\ReviewMemberController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Areas\Member\Models\Member\ChangePasswordVm.cs" />
+    <Compile Include="Areas\Member\Models\Member\PublicProfileVm.cs" />
     <Compile Include="Areas\Member\Models\ReviewMember\ReviewListVm.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

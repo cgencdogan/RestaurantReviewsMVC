@@ -1,6 +1,6 @@
 ﻿@model RestaurantReviews.WebUI.Models.ReviewListVm
 @{
-    int pageToShow = ViewBag.pageNumber + 1;
+    int pageToShow = Model.PageNumber + 1;
 }
 <div id="comment-section">
     <h1>YORUMLAR</h1>
@@ -9,9 +9,7 @@
             <textarea class="form-control" id="txt-comment" rows="4" placeholder="Yorumunuzu giriniz..."></textarea>
             <div class="col-md-3">
                 <form class="form-inline">
-                    <input type='hidden' value='@Model.RestaurantId' id='restaurant-id' />
-                    <input type='hidden' value='@Model.PageNumber' id='page-number' />
-                    <input type='hidden' value="@Model.MaxPage" id='max-page' />
+
                     <span>Puan: </span><select class="form-control" id="review-given-score">
                         <option value="0">Seçiniz</option>
                         <option value="1">1</option>
@@ -49,7 +47,7 @@
                         <img src="@review.ProfilePicPath" class="img-circle" width="75" height="75" />
                     </div>
                     <div class="col-md-10">
-                        <strong>@review.Username</strong>
+                        <a href="/kullanici?username=@review.Username"><strong>@review.Username</strong></a>
                         <br />
                         <span>Toplam Yorum: @review.UserReviewCount</span>
                         <br />
@@ -76,7 +74,9 @@
             <li><a href="#" class="review-pagination" id="next-page">Sonraki&gt;</a></li>
         </ul>
     </div>
-
+    <input type='hidden' value='@Model.RestaurantId' id='restaurant-id' />
+    <input type='hidden' value='@Model.PageNumber' id='page-number' />
+    <input type='hidden' value="@Model.MaxPage" id='max-page' />
 </div>
 <script>
     $(document).ready(function () {

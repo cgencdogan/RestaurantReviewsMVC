@@ -92,9 +92,30 @@ namespace RestaurantReviews.DAL.Repositories {
         public string GetCountAllMonths() {
             var x = "";
             for (int i = 1; i <= 12; i++) {
-                x+= dbSet.Where(r => r.AddedDate.Month == i&& r.AddedDate.Year==DateTime.Now.Year && r.Score!=null && r.IsActive).Count() +",";
+                x += dbSet.Where(r => r.AddedDate.Month == i && r.AddedDate.Year == DateTime.Now.Year && r.Score != null && r.IsActive).Count() + ",";
             }
             return x;
+        }
+
+        public Review GetMostLikedRestaurantIdByUserId(string userId) {
+            if (dbSet.Where(r => r.UserId == userId && r.IsActive && r.Score != null).Any()) {
+                return dbSet.Where(r => r.UserId == userId && r.IsActive && r.Score != null)
+                .OrderByDescending(o => o.Score)
+                .First();
+            }
+            else {
+                return null;
+            }
+        }
+
+        public Review GetMostDislikedRestaurantIdByUserId(string userId) {
+            if (dbSet.Where(r => r.UserId == userId && r.IsActive && r.Score != null).Any()) {
+                return dbSet.Where(r => r.UserId == userId && r.IsActive && r.Score != null)
+                    .OrderBy(o => o.Score).First();
+            }
+            else {
+                return null;
+            }
         }
     }
 }

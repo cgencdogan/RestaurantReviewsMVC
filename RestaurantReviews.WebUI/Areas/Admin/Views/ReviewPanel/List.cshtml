@@ -29,7 +29,7 @@
                 @for (int i = 0; i < Model.PanelReviews.Count(); i++) {
                     <tr class="list-min-height" id="review-row-@Model.PanelReviews[i].ReviewId">
                             <td>@((i + 1) + (Model.PageNumber * Model.ShownCount))</td>
-                            <td id="username-@Model.PanelReviews[i].ReviewId">@Model.PanelReviews[i].Username</td>
+                            <td id="username-@Model.PanelReviews[i].ReviewId"><a href="/kullanici?username=@Model.PanelReviews[i].Username">@Model.PanelReviews[i].Username</a></td>
                             <td id="restaurant-name-@Model.PanelReviews[i].ReviewId"><a href="/restoran-detay?id=@Model.PanelReviews[i].RestaurantId">@Model.PanelReviews[i].RestaurantName</a></td>
                             <td>@Model.PanelReviews[i].ReviewDate</td>
                             <td>@Model.PanelReviews[i].Score</td>

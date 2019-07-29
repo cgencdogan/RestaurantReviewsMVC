@@ -36,7 +36,7 @@ namespace RestaurantReviews.WebUI.Areas.Admin.Controllers {
                     RestaurantId = review.RestaurantId,
                     Username = review.AppUser.UserName,
                     Score = review.Score,
-                    ReviewDate = review.AddedDate.ToString(),
+                    ReviewDate = review.AddedDate.ToString("dd MMM y HH:mm"),
                     ReviewContent = review.Content
                 });
             }

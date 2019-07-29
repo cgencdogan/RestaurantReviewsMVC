@@ -45,9 +45,6 @@ namespace RestaurantReviews.WebUI.Controllers {
             model.ReviewCount = reviewCount;
             model.PageNumber = pageNumber;
             model.MaxPage = maxPage;
-            ViewBag.pageNumber = pageNumber;
-            ViewBag.restaurantId = restaurantId;
-            ViewBag.maxPage = maxPage;
             return PartialView(model);
         }
 
