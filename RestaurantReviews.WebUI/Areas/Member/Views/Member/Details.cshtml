@@ -1,4 +1,4 @@
-﻿@model RestaurantReviews.Models.Entities.Identity.AppUser
+﻿@model RestaurantReviews.WebUI.Areas.Member.Models.DetailsVm
 @{
     ViewBag.Title = "Details";
 }
@@ -15,9 +15,9 @@
                 </div>
                 <div class="card-body">
                     <div class="col-60 text-right">
-                        <img id="profile-pic" src="@Model.ProfilePicPath" />
+                        <img id="profile-pic" src="@Model.AppUser.ProfilePicPath" />
                         <br /><br />
-                        <a class="btn btn-danger change-profile-pic" id="edit-@Model.Id" href="/kullanici-islemleri/profil-resmi-degistir" title="Profil Resmini Değiştir" style="width:200px;">
+                        <a class="btn btn-danger" id="edit-@Model.AppUser.Id" href="/kullanici-islemleri/profil-resmi-degistir" title="Profil Resmini Değiştir" style="width:200px;">
                             <i class="fas fa-fw fa-edit"></i> Değiştir
                         </a>
                     </div>
@@ -33,22 +33,26 @@
                             <tbody>
                                 <tr>
                                     <td><b>Kullanıcı Adı: </b></td>
-                                    <td>@Model.UserName</td>
+                                    <td>@Model.AppUser.UserName</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td><b>E-posta: </b></td>
-                                    <td>@Model.Email</td>
+                                    <td>@Model.AppUser.Email</td>
                                     <td class="text-right">
-                                        <a class="btn btn-danger btn-sm change-email" id="edit-@Model.Id" href="/kullanici-islemleri/eposta-degistir" title="E-Mail Değiştir">
+                                        <a class="btn btn-danger btn-sm" id="edit-@Model.AppUser.Id" href="/kullanici-islemleri/eposta-degistir" title="E-Mail Değiştir">
                                             <i class="fas fa-fw fa-edit"></i>
                                         </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><b>Yorum Sayısı: </b></td>
-                                    <td>17</td>
-                                    <td></td>
+                                    <td>@Model.ReviewCount </ td >
+                                    <td class="text-right">
+                                        <a class="btn btn-danger btn-sm" id="edit-@Model.AppUser.Id" href="/kullanici-islemleri/yorumlar" title="Yorumları Gör">
+                                            <i class="fas fa-fw fa-eye"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

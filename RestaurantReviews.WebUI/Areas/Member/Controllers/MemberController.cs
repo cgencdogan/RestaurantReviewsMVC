@@ -15,7 +15,9 @@ namespace RestaurantReviews.WebUI.Areas.Member.Controllers {
         }
 
         public ActionResult Details() {
-            var model = service.Uow.Users.FindById(User.Identity.GetUserId());
+            var model = new DetailsVm();
+            model.AppUser = service.Uow.Users.FindById(User.Identity.GetUserId());
+            model.ReviewCount = service.Uow.Reviews.GetCountByUserId(model.AppUser.Id);
             return View(model);
         }
 

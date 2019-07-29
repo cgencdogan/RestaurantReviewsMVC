@@ -216,6 +216,7 @@
     <Compile Include="Areas\Member\Controllers\ReviewMemberController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Areas\Member\Models\Member\ChangePasswordVm.cs" />
+    <Compile Include="Areas\Member\Models\Member\DetailsVm.cs" />
     <Compile Include="Areas\Member\Models\Member\PublicProfileVm.cs" />
     <Compile Include="Areas\Member\Models\ReviewMember\ReviewListVm.cs" />
     <Compile Include="Controllers\AccountController.cs" />
