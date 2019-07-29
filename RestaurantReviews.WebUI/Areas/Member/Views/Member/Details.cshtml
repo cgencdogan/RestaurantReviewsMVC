@@ -4,51 +4,69 @@
 }
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Kullanıcı Bilgileri</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Hesap Bilgileri</h6>
     </div>
-    @* ----- BEGIN USER DETAILS ----- *@
+    @* ----- BEGIN PUBLIC PROFILE ----- *@
     <div class="card-body">
-        <div class="row">
-
-            <div class="col-md-6">
-
-                @* ----- BEGIN Kullanıcı Adı ----- *@
-                <div class="row">
-                    <div class="col-md-3">
-                        <label><strong>Kullanıcı Adı:</strong></label>
-                    </div>
-                    <div class="col-md-9">
-                        <label>@Model.UserName</label>
+        <div class="row justify-content-center">
+            <div class="card m-2">
+                <div class="card-header">
+                    Profil Resmi
+                </div>
+                <div class="card-body">
+                    <div class="col-60 text-right">
+                        <img id="profile-pic" src="@Model.ProfilePicPath" />
+                        <br /><br />
+                        <a class="btn btn-danger change-profile-pic" id="edit-@Model.Id" href="/kullanici-islemleri/profil-resmi-degistir" title="Profil Resmini Değiştir" style="width:200px;">
+                            <i class="fas fa-fw fa-edit"></i> Değiştir
+                        </a>
                     </div>
                 </div>
-                @* ----- END Kullanıcı Adı ----- *@
-                @* ----- BEGIN E-posta ----- *@
-                <div class="row">
-                    <div class="col-md-3">
-                        <label><strong>E-posta:</strong></label>
-                    </div>
-                    <div class="col-md-9">
-                        <label>@Model.Email</label><label><a href="/kullanici-islemleri/eposta-degistir">Değiştir</a></label>
-                    </div>
-                </div>
-                @* ----- END E-posta ----- *@
             </div>
-            <div class="col-md-6">
-
-                @* ----- BEGIN Profil Resmi ----- *@
-                <div class="row">
-                    <div class="col-20">
-                        <label><strong>Profil Resmi:</strong></label>
-                    </div>
-                    <div class="col-60">
-                        <img id="profile-pic" src="@Model.ProfilePicPath"/>
-                        <br />
-                        <a href="/kullanici-islemleri/profil-resmi-degistir">Profil resmini Değiştir</a>
-                    </div>
+            <div class="card m-2" style="width:40rem;">
+                <div class="card-header">
+                    Kullanıcı Detayları
                 </div>
-                @* ----- END Profil Resmi ----- *@
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><b>Kullanıcı Adı: </b></td>
+                                    <td>@Model.UserName</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><b>E-posta: </b></td>
+                                    <td>@Model.Email</td>
+                                    <td class="text-right">
+                                        <a class="btn btn-danger btn-sm change-email" id="edit-@Model.Id" href="/kullanici-islemleri/eposta-degistir" title="E-Mail Değiştir">
+                                            <i class="fas fa-fw fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Yorum Sayısı: </b></td>
+                                    <td>17</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr />
+                    </div>
+                    <br />
+                    <ul>
+                        <li>
+                            <a href="/kullanici-islemleri/sifre-degistir">Şifremi Değiştir</a>
+                        </li>
+                        <li>
+                            <a href="#" id="deactivate-my-account">Hesabımı Pasife Al</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    @* ----- END USER DETAILS ----- *@
+    @* ----- END PUBLIC PROFILE ----- *@
 </div>
+<script src="~/Areas/Member/Scripts/Member/DeactivateAccount.js"></script>

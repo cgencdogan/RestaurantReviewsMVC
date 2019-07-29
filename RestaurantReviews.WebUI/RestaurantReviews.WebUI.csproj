@@ -141,6 +141,7 @@
     <Content Include="Areas\Member\Scripts\Member\ChangeAvatar.js" />
     <Content Include="Areas\Member\Scripts\Member\ChangeEmail.js" />
     <Content Include="Areas\Member\Scripts\Member\ChangePassword.js" />
+    <Content Include="Areas\Member\Scripts\Member\DeactivateAccount.js" />
     <Content Include="Areas\Member\Scripts\Review\ReviewList.js" />
     <Content Include="Content\Assets\bootstrap.css" />
     <Content Include="Content\Assets\font-awesome.css" />

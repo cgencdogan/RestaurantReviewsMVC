@@ -127,5 +127,15 @@ namespace RestaurantReviews.WebUI.Areas.Member.Controllers {
             model.ReviewCount = reviewCount;
             return View(model);
         }
+
+        public ActionResult Deactivate() {
+            var appUserId = User.Identity.GetUserId();
+            var appUser = service.Uow.Users.FindById(appUserId);
+            appUser.IsActive = false;
+            service.Uow.Users.Update(appUser);
+            service.Uow.Save();
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
