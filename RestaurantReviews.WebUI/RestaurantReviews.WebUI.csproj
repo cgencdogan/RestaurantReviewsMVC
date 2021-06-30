@@ -167,6 +167,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\home-header.jpg" />
     <Content Include="Content\Images\ProfilePics\default-pp.jpg" />
+    <Content Include="Content\Images\ReadMe\restaurantreviews.gif" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
