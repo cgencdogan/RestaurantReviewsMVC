@@ -13,7 +13,7 @@
 - Projeyi çalıştırdığınızda **"roslyn\csc.exe yolunun bir parçası bulunamadı."** hatası ile karşılaşırsanız, Package Manage Console'da **"Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r"** komutu ile paketi güncelleyiniz.
 
 ## Kullanıcı Bilgileri
-**Kullanıcı Adı: **admin
+**Kullanıcı Adı:** admin
 **Şifre :** qwe123
 
 ## Kullanılan Teknolojiler
