@@ -23,9 +23,9 @@
 ## Kullanılan Teknolojiler
 - ASP.NET MVC 5 - version 5.2.7
 - Entity Framework Code First - version 6.2.0
-- AspNet IdentityCore - version 2.2.2
+- ASP.NET Identity Core - version 2.2.2
 - Microsoft Owin - version 4.0.1
-- Newtonsoft.Json - version 12.0.2
+- Newtonsoft Json - version 12.0.2
 - jQuery - version 3.4.1
 - Bootstrap - version 3.4.1
 - Toastr - version 2.1.1
