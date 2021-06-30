@@ -1,6 +1,6 @@
 ﻿namespace RestaurantReviews.WebUI.Utils {
     static class PageUtil {
-        public static int HomeRestaurantShownCount { get; set; } = 9;
+        public static int HomeRestaurantShownCount { get; set; } = 15;
         public static int ReviewListShownCount { get; set; } = 5;
         public static int SuggestionRestaurantShownCount { get; set; } = 6;
         public static int PanelRestaurantShownCount { get; set; } = 10;

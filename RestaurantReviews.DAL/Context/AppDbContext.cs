@@ -5,7 +5,7 @@ using System.Data.Entity;
 namespace RestaurantReviews.DAL.Context {
     public class AppDbContext : IdentityDbContext {
         public AppDbContext() {
-            Database.Connection.ConnectionString = @"server=DESKTOP-J2137VK;database=RestaurantReviewsDb;Integrated Security=true";
+            Database.Connection.ConnectionString = @"server=(localdb)\MSSQLLocalDB;database=RestaurantReviewsDb;Integrated Security=true";
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }

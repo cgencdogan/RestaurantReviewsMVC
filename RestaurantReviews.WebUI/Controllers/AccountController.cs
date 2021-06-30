@@ -60,10 +60,10 @@ namespace RestaurantReviews.WebUI.Controllers {
                 var user = userManager.FindByName(data.SignupUsername);
                 userManager.AddToRole(user.Id, "default_user");
 
-                Uri uri = new Uri(Request.Url.ToString());
-                string mailSubject = "Restoran İnceleme E-posta Aktivasyonu";
-                string mailBody = "Lütfen bağlantıya tıklayarak üyeliğinizi aktif ediniz: " + uri.GetLeftPart(UriPartial.Authority) + "/account/mailverify?username=" + user.UserName + "&confirmationCode=" + user.EmailVerificationCode;
-                mailManager.SendMail("restaurantreviewstr@gmail.com", "xxxxxxxx", data.Email, mailSubject, mailBody);
+                //Uri uri = new Uri(Request.Url.ToString());
+                //string mailSubject = "Restoran İnceleme E-posta Aktivasyonu";
+                //string mailBody = "Lütfen bağlantıya tıklayarak üyeliğinizi aktif ediniz: " + uri.GetLeftPart(UriPartial.Authority) + "/account/mailverify?username=" + user.UserName + "&confirmationCode=" + user.EmailVerificationCode;
+                //mailManager.SendMail("restaurantreviewstr@gmail.com", "xxxxxxxx", data.Email, mailSubject, mailBody);
 
                 return RedirectToAction("Index", "Home");
             }
