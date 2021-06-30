@@ -4,6 +4,9 @@
 ## Özet
 > Restoran İnceleme, kullanıcıların sistemde girilen ilçelere ve kategorilere göre yer alan restoranları inceleyebileceği bir ASP.NET MVC projesidir. Kullanıcılar, restoranlar hakkında adres ve telefon gibi bilgilere ulaşabilmenin yanında yorum yapabilir, puan verebilir, fotoğraf yükleyebilir, restoranları ilçesine, kategorisine veya puanına göre sıralayabilir. Yönetici rolüne sahip olan kullanıcılar ise yeni yönetim panelinden çeşitli istatistiklere ve grafiklere ulaşabilir. Restoran, kategori, servis gibi bilgileri ekleyip güncelleyebilir. Kullanıcıları ve yorumları yönetebilir. Projenin yönetim paneli için "SB Admin 2" isimli Bootstrap teması kullanılmıştır. Restoran sayfası ve ana sayfa ile bootstrap kullanılarak tasarlanmıştır.
 
+## Ekran Görüntüleri
+![Demo Gif of Restaurant Reviews](https://github.com/cgencdogan/RestaurantReviewsMVC/blob/master/RestaurantReviews.WebUI/Content/Images/ReadMe/restaurantreviews.gif)
+
 ## Çalıştırmadan Önce
 - **Solution**'a sağ tıklayarak "**Restore Nuget Packages"** seçeneği ile projede kullanılan paketleri yükleyiniz.
 - **Package Manager Console**'da Default Project olarak **RestaurantReviews.DAL** projesini seçiniz.
@@ -27,10 +30,6 @@
 - Bootstrap - version 3.4.1
 - Toastr - version 2.1.1
 - SweetAlert2- version 8.13.2
-
-## Ekran Görüntüleri
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
 
 ## İletişim
 [LinkedIn](https://www.linkedin.com/in/caner-gencdogan/)
